@@ -6,4 +6,6 @@ workdir /builder
 
 add . /builder
 
+env TERM xterm-256color
+
 entrypoint ./build.sh 

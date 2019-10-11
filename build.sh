@@ -9,10 +9,12 @@ if [ ! -z "$DOCKER_USER" ] && [ ! -z "$DOCKER_PASS" ]; then
     if ! (echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin); then
         exit 1
     fi
+    echo setting push to 1
     PUSH=1
-elif [ ! -f ~/.docker/config.json ]; then
+elif [ -f ~/.docker/config.json ]; then
+    PUSH=1
+else
     >&2 echo no DOCKER_USER and DOCKER_PASS and no login file mounted to ~/.docker/config.json. pushing disabled.
-    PUSH=0
 fi
 
 set -o pipefail
@@ -42,7 +44,7 @@ do
     fi
 done
 
-if [ $PUSH -eq 1 ]; then
+if [ "$PUSH" -eq 1 ]; then
     for tag in "${built_tags[@]}";
     do
         echo Pushing "$tag"
