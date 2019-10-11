@@ -4,17 +4,15 @@ if [ -z "$IMAGE_PREFIX" ]; then
     >&2 echo no image prefix, please set IMAGE_PREFIX
     exit 1
 fi
-if [ -z "$DOCKER_USER" ]; then
-    >&2 echo no docker username, please set DOCKER_USER
-    exit 1
-fi
-if [ -z "$DOCKER_PASS" ]; then
-    >&2 echo no docker password, please set DOCKER_PASS
-    exit 1
-fi
 
-if ! (echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin); then
-    exit 1
+if [ ! -z "$DOCKER_USER" ] && [ ! -z "$DOCKER_PASS" ]; then
+    if ! (echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin); then
+        exit 1
+    fi
+    PUSH=1
+elif [ ! -f ~/.docker/config.json ]; then
+    >&2 echo no DOCKER_USER and DOCKER_PASS and no login file mounted to ~/.docker/config.json. pushing disabled.
+    PUSH=0
 fi
 
 set -o pipefail
@@ -44,9 +42,11 @@ do
     fi
 done
 
-for tag in "${built_tags[@]}";
-do
-    echo Pushing "$tag"
+if [ $PUSH -eq 1 ]; then
+    for tag in "${built_tags[@]}";
+    do
+        echo Pushing "$tag"
 
-    docker push $tag
-done
+        docker push $tag
+    done
+fi
