@@ -24,7 +24,7 @@ do
     echo Building $tag from $dockerfile
     tee -a docker-compose.yml <<EOF
   $dockerfile:
-    image: aburgess/$tag
+    image: $tag
     build:
       context: .
       dockerfile: $dockerfile
