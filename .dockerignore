@@ -1,5 +1,6 @@
-LICENSE
-Dockerfile
+*.Dockerfile
 .dockerignore
 .git
 README.md
+docker-compose.yml
+LICENSE

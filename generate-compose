@@ -1,0 +1,32 @@
+#!/bin/bash
+
+IFS=' '
+# tags on file system
+# sed -E -e 's/.\/(.+)\/(.+)\/Dockerfile/\1:\2/'
+tags=$(find . -name '*.Dockerfile' | cut -c3-)
+# add ordered tags first
+tags=$(echo "$tags" | cat order - | awk '!seen[$0]++' )
+
+echo $tags
+echo Generating docker-compose.yml
+
+tee docker-compose.yml <<EOF
+version: "3"
+services:
+EOF
+
+IFS=$'\n'
+built_tags=()
+for dockerfile in $tags;
+do
+    tag=$(echo $dockerfile | sed -E 's/^([^.]+)\.([^.]+)\.Dockerfile/\1:\2/')
+    tag=aburgess/$tag
+    echo Building $tag from $dockerfile
+    tee -a docker-compose.yml <<EOF
+  $dockerfile:
+    image: aburgess/$tag
+    build:
+      context: .
+      dockerfile: $dockerfile
+EOF
+done

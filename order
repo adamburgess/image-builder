@@ -1,2 +1,2 @@
-common:latest
-gcc:latest
+common.latest.Dockerfile
+gcc.latest.Dockerfile
