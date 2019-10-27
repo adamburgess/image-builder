@@ -1,3 +1,4 @@
+binaries.mo.Dockerfile
 common.latest.Dockerfile
 common.extra.Dockerfile
 gcc.latest.Dockerfile
