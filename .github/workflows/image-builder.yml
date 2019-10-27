@@ -13,6 +13,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: login to docker
-      run: docker login -u aburgess -p $GITHUB_TOKEN
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: docker login -u aburgess -p ${{ secrets.DOCKERHUB_PASSWORD }}
