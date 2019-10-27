@@ -12,5 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: get docker 
-      run: docker version && docker-compose version
+    - name: login to docker
+      run: docker login -u aburgess -p $GITHUB_TOKEN
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
