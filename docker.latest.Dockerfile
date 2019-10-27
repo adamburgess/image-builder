@@ -1,3 +1,3 @@
 from aburgess/common
 
-run apk add docker-cli
+run apk add --no-cache docker-cli

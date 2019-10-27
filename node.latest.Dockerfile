@@ -1,3 +1,3 @@
 from alpine
 
-run apk add nodejs-current
+run apk add --no-cache nodejs-current

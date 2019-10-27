@@ -1,3 +1,3 @@
 from aburgess/common
 
-run apk add build-base cmake
+run apk add --no-cache build-base cmake

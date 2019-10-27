@@ -1,3 +1,3 @@
 from alpine
 
-run apk add nodejs
+run apk add --no-cache nodejs
