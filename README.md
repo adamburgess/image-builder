@@ -6,6 +6,7 @@ Alpine, but with:
 * bash (as entrypoint)
 * curl
 * htop
+* tini (init)
 
 Makes debugging easier. A good base image for final stages.
 
