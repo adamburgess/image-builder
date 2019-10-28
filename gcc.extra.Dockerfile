@@ -1,7 +1,7 @@
 from aburgess/gcc:latest
 
 # GDB
-run apk add --no-cache gdb
+run apk add --no-cache gdb sqlite-dev
 
 # CGreen, a testing framework
 run ln -s /usr/local/lib /usr/local/lib64 && \
