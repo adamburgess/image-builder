@@ -12,7 +12,7 @@ run ln -s /usr/local/lib /usr/local/lib64 && \
     cd .. && rm -rf cgreen
 
 # Pistache, a C++ web server
-run git clone https://github.com/oktal/pistache.git && \
+run git clone --single-branch --branch header-case https://github.com/adamburgess/pistache.git && \
     cd pistache && \
     mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j && make install && \
     cd ../.. && rm -rf pistache
