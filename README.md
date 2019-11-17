@@ -7,6 +7,8 @@ Alpine, but with:
 * curl
 * htop
 * tini (init)
+* nano
+* htop
 
 Makes debugging easier. A good base image for final stages.
 
@@ -14,6 +16,7 @@ Makes debugging easier. A good base image for final stages.
 
 Any misc extra packages to use when building.
 Base image: common:latest
+
 Packages:
 * sudo
 * dpkg
@@ -36,7 +39,6 @@ I will add stuff to this image when I don't want to recompile dependencies.
 
 Base image: aburgess/common:latest
 With the latest version of node and the LTS version, respectively.
-
 
 ### aburgess/node:extra
 
