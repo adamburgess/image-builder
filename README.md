@@ -24,11 +24,17 @@ Packages:
 ### aburgess/gcc:latest
 
 Base image: aburgess/common:extra
-Basically, build-essential.
+
+Packages:
+* build-base (alpine's build-essential)
+* linux-headers
+* openssl-dev
+* CMake 3.16.0-rc3
 
 ### aburgess/gcc:extra
 
 Base image: aburgess/gcc:extra
+
 Adds:
 * GDB
 * CGreen (testing)

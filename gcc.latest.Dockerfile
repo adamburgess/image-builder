@@ -8,4 +8,4 @@ run git clone --single-branch --branch $cmake https://github.com/Kitware/CMake.g
     cd CMake && \
     ./bootstrap --parallel=4 && make -j4 && \
     make install && \
-    rm -rf CMake
+    cd .. && rm -rf CMake
