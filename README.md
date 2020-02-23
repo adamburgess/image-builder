@@ -20,6 +20,9 @@ Base image: common:latest
 Packages:
 * sudo
 * dpkg
+* git
+* rsync
+* ssh
 
 ### aburgess/gcc:latest
 
