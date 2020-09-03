@@ -1,0 +1,32 @@
+binaries:mo:
+  packages: alpine-base
+common:latest:
+  packages: alpine-base bash curl wget tini htop nano
+common:extra:
+  inputs:
+    -  common:latest
+  packages: dpkg sudo git rsync openssh-client
+docker:latest:
+  packages: docker-cli docker-compose
+  inputs:
+    -  common:latest 
+gcc:latest:
+  inputs:
+    -  common:extra
+  packages: build-base linux-headers openssl-dev cmake
+gcc:extra:
+  inputs:
+    -  gcc:latest
+  packages: gdb sqlite-dev
+node:latest:
+  inputs:
+    -  common:latest
+  packages: nodejs-current
+node:extra:
+  inputs:
+    -  common:extra
+  packages: nodejs-current npm
+node:lts:
+  inputs:
+    -  common:latest
+  packages: nodejs

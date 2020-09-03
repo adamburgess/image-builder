@@ -2,19 +2,14 @@ name: image-builder
 
 on:
   push:
-  schedule:
-    - cron:  '0 0 * * *'
+    paths:
+    - 'images-current.yml'
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: login to docker
-      run: docker login -u aburgess -p ${{ secrets.DOCKERHUB_PASSWORD }}
-    - name: build images
-      run: ./generate-compose && docker-compose build
-    - name: push images
-      run: docker-compose push
+    - uses: actions/checkout@v2
+    - name: no-op
+      run: echo nothing to run
