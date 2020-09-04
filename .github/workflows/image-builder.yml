@@ -3,6 +3,7 @@ name: image-builder
   push:
     paths:
       - images-current.yml
+      - .github/workflows/image-builder.yml
 jobs:
   build:
     runs-on: ubuntu-latest
