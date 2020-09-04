@@ -143,14 +143,14 @@
   - cmake@3.18.1-r0
   - file@5.39-r0
   - fortify-headers@1.1-r0
-  - g++@10.2.0-r2
-  - gcc@10.2.0-r2
+  - g++@10.2.0-r3
+  - gcc@10.2.0-r3
   - isl@0.18-r0
-  - libatomic@10.2.0-r2
+  - libatomic@10.2.0-r3
   - libc-dev@0.7.2-r3
   - libcrypto1.1@1.1.1g-r0
-  - libgomp@10.2.0-r2
-  - libgphobos@10.2.0-r2
+  - libgomp@10.2.0-r3
+  - libgphobos@10.2.0-r3
   - libssl1.1@1.1.1g-r0
   - linux-headers@5.7.8-r0
   - make@4.3-r0
@@ -167,8 +167,9 @@
   - 'so:libcurl.so.4@7.72.0-r0'
   - 'so:libexpat.so.1@2.2.9-r1'
   - 'so:libformw.so.6@6.2_p20200829-r0'
-  - 'so:libgcc_s.so.1@10.2.0-r2'
+  - 'so:libgcc_s.so.1@10.2.0-r3'
   - 'so:libgmp.so.10@6.2.0-r0'
+  - 'so:libgo.so.16@10.2.0-r3'
   - 'so:liblz4.so.1@1.9.2-r0'
   - 'so:liblzma.so.5@5.2.5-r0'
   - 'so:libmagic.so.1@5.39-r0'
@@ -176,7 +177,7 @@
   - 'so:libmpfr.so.6@4.0.2-r4'
   - 'so:libnghttp2.so.14@1.41.0-r0'
   - 'so:librhash.so.0@1.4.0-r0'
-  - 'so:libstdc++.so.6@10.2.0-r2'
+  - 'so:libstdc++.so.6@10.2.0-r3'
   - 'so:libuv.so.1@1.37.0-r0'
   - 'so:libz.so.1@1.2.11-r3'
   - 'so:libzstd.so.1@1.4.5-r0'
@@ -189,7 +190,7 @@
   - 'so:libcrypto.so.1.1@1.1.1g-r0'
   - 'so:libexpat.so.1@2.2.9-r1'
   - 'so:libffi.so.7@3.3-r2'
-  - 'so:libgcc_s.so.1@10.2.0-r2'
+  - 'so:libgcc_s.so.1@10.2.0-r3'
   - 'so:libgdbm.so.4@1.13-r1'
   - 'so:liblzma.so.5@5.2.5-r0'
   - 'so:libncursesw.so.6@6.2_p20200829-r0'
@@ -197,7 +198,7 @@
   - 'so:libreadline.so.8@8.0.4-r0'
   - 'so:libsqlite3.so.0@3.33.0-r0'
   - 'so:libssl.so.1.1@1.1.1g-r0'
-  - 'so:libstdc++.so.6@10.2.0-r2'
+  - 'so:libstdc++.so.6@10.2.0-r3'
   - 'so:libz.so.1@1.2.11-r3'
   - sqlite-dev@3.33.0-r0
 'node:latest':
@@ -208,10 +209,10 @@
   - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
   - 'so:libcares.so.2@1.16.1-r0'
   - 'so:libcrypto.so.1.1@1.1.1g-r0'
-  - 'so:libgcc_s.so.1@10.2.0-r2'
+  - 'so:libgcc_s.so.1@10.2.0-r3'
   - 'so:libnghttp2.so.14@1.41.0-r0'
   - 'so:libssl.so.1.1@1.1.1g-r0'
-  - 'so:libstdc++.so.6@10.2.0-r2'
+  - 'so:libstdc++.so.6@10.2.0-r3'
   - 'so:libuv.so.1@1.37.0-r0'
   - 'so:libz.so.1@1.2.11-r3'
 'node:extra':
@@ -224,10 +225,10 @@
   - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
   - 'so:libcares.so.2@1.16.1-r0'
   - 'so:libcrypto.so.1.1@1.1.1g-r0'
-  - 'so:libgcc_s.so.1@10.2.0-r2'
+  - 'so:libgcc_s.so.1@10.2.0-r3'
   - 'so:libnghttp2.so.14@1.41.0-r0'
   - 'so:libssl.so.1.1@1.1.1g-r0'
-  - 'so:libstdc++.so.6@10.2.0-r2'
+  - 'so:libstdc++.so.6@10.2.0-r3'
   - 'so:libuv.so.1@1.37.0-r0'
   - 'so:libz.so.1@1.2.11-r3'
 'node:lts':
@@ -239,8 +240,8 @@
   - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
   - 'so:libcares.so.2@1.16.1-r0'
   - 'so:libcrypto.so.1.1@1.1.1g-r0'
-  - 'so:libgcc_s.so.1@10.2.0-r2'
+  - 'so:libgcc_s.so.1@10.2.0-r3'
   - 'so:libssl.so.1.1@1.1.1g-r0'
-  - 'so:libstdc++.so.6@10.2.0-r2'
+  - 'so:libstdc++.so.6@10.2.0-r3'
   - 'so:libuv.so.1@1.37.0-r0'
   - 'so:libz.so.1@1.2.11-r3'
