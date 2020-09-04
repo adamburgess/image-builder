@@ -6,6 +6,7 @@ on:
       - master
     paths-ignore:
     - 'images-current.yml'
+    - '.github/workflows/image-builder.yml'
 
 jobs:
   build:
