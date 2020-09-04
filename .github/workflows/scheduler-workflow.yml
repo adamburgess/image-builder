@@ -1,0 +1,22 @@
+name: scheduler-workflow
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  scheduler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: scheduler
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '14'
+      - name: install node modules
+        run: yarn
+      - name: run scheduler
+        run: yarn start
+        env:
+          MY_TOKEN: ${{ secrets.MY_TOKEN }}
