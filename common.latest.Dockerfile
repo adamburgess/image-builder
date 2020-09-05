@@ -1,5 +1,5 @@
 from aburgess/binaries:mo as mo
-from alpine
+from alpine:edge
 
 run apk add --no-cache bash curl wget tini htop nano
 
