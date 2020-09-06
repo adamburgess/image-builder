@@ -203,7 +203,7 @@
 'node:latest':
   - /bin/sh@1.32.0-r3
   - ca-certificates@20191127-r4
-  - nodejs-current@14.8.0-r0
+  - nodejs-current@14.9.0-r0
   - 'so:libbrotlidec.so.1@1.0.9-r0'
   - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
   - 'so:libcares.so.2@1.16.1-r0'
@@ -217,8 +217,8 @@
 'node:extra':
   - /bin/sh@1.32.0-r3
   - ca-certificates@20191127-r4
-  - nodejs-current@14.8.0-r0
-  - nodejs@14.8.0-r0
+  - nodejs-current@14.9.0-r0
+  - nodejs@14.9.0-r0
   - npm@12.18.3-r0
   - 'so:libbrotlidec.so.1@1.0.9-r0'
   - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
