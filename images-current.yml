@@ -111,7 +111,7 @@
   - py3-paramiko@2.7.2-r0
   - py3-parsing@2.4.7-r1
   - py3-pynacl@1.4.0-r0
-  - py3-pyrsistent@0.16.0-r0
+  - py3-pyrsistent@0.17.0-r0
   - py3-pysocks@1.7.1-r1
   - py3-requests@2.24.0-r0
   - py3-setuptools@50.3.0-r0
