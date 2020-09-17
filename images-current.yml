@@ -1,6 +1,6 @@
 'binaries:mo':
   - /bin/sh@1.32.0-r3
-  - alpine-base@3.13.0_alpha20200626-r0
+  - alpine-base@3.13.0_alpha20200917-r0
   - alpine-baselayout@3.2.0-r8
   - alpine-conf@3.9.0-r1
   - alpine-keys@2.2-r0
@@ -19,7 +19,7 @@
   - 'so:libz.so.1@1.2.11-r3'
 'common:latest':
   - /bin/sh@1.32.0-r3
-  - alpine-base@3.13.0_alpha20200626-r0
+  - alpine-base@3.13.0_alpha20200917-r0
   - alpine-baselayout@3.2.0-r8
   - alpine-conf@3.9.0-r1
   - alpine-keys@2.2-r0
