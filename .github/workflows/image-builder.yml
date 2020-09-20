@@ -15,16 +15,7 @@ jobs:
         run: 'docker build -t aburgess/gcc:latest -f gcc.latest.Dockerfile .'
       - name: 'build gcc:extra'
         run: 'docker build -t aburgess/gcc:extra -f gcc.extra.Dockerfile .'
-      - name: 'build node:latest'
-        run: 'docker build -t aburgess/node:latest -f node.latest.Dockerfile .'
-      - name: 'build node:extra'
-        run: 'docker build -t aburgess/node:extra -f node.extra.Dockerfile .'
-      - name: 'build node:lts'
-        run: 'docker build -t aburgess/node:lts -f node.lts.Dockerfile .'
-      - name: 'push gcc:latest gcc:extra node:latest node:extra node:lts'
+      - name: 'push gcc:latest gcc:extra'
         run: |-
           docker push aburgess/gcc:latest
           docker push aburgess/gcc:extra
-          docker push aburgess/node:latest
-          docker push aburgess/node:extra
-          docker push aburgess/node:lts
