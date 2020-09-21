@@ -29,9 +29,11 @@ jobs:
         run: 'docker build -t aburgess/node:extra -f node.extra.Dockerfile .'
       - name: 'build node:lts'
         run: 'docker build -t aburgess/node:lts -f node.lts.Dockerfile .'
+      - name: 'build jpegxl:latest'
+        run: 'docker build -t aburgess/jpegxl:latest -f jpegxl.latest.Dockerfile .'
       - name: >-
           push binaries:mo common:latest common:extra docker:latest gcc:latest
-          gcc:extra node:latest node:extra node:lts
+          gcc:extra node:latest node:extra node:lts jpegxl:latest
         run: |-
           docker push aburgess/binaries:mo
           docker push aburgess/common:latest
@@ -42,3 +44,4 @@ jobs:
           docker push aburgess/node:latest
           docker push aburgess/node:extra
           docker push aburgess/node:lts
+          docker push aburgess/jpegxl:latest
