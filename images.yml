@@ -21,11 +21,11 @@ gcc:extra:
   inputs:
     - gcc:latest
   packages: gdb sqlite-dev
-  githubs:
-    - cgreen-devs/cgreen
-    - oktal/pistache
-    - open-source-parsers/jsoncpp
-    - fmtlib/fmt@7.0.3
+  repos:
+    - github@cgreen-devs/cgreen
+    - github@oktal/pistache
+    - github@open-source-parsers/jsoncpp
+    - github@fmtlib/fmt@7.0.3
 node:latest:
   inputs:
     - common:latest
@@ -38,3 +38,8 @@ node:lts:
   inputs:
     - common:latest
   packages: nodejs
+jpegxl:latest:
+  repos:
+    - gitlab@wg1/jpeg-xl
+  dockers:
+    - library/ubuntu
