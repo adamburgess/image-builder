@@ -1,25 +1,25 @@
 binaries:mo:
-  docker:
+  dockers:
     - library/alpine@edge
 common:latest:
-  docker:
+  dockers:
     - library/alpine@edge
   packages: bash curl wget tini htop nano
 common:extra:
   inputs:
-    -  common:latest
+    - common:latest
   packages: dpkg sudo git rsync openssh-client
 docker:latest:
   packages: docker-cli docker-compose
   inputs:
-    -  common:latest 
+    - common:latest 
 gcc:latest:
   inputs:
-    -  common:extra
+    - common:extra
   packages: build-base linux-headers openssl-dev cmake
 gcc:extra:
   inputs:
-    -  gcc:latest
+    - gcc:latest
   packages: gdb sqlite-dev
   githubs:
     - cgreen-devs/cgreen
@@ -28,13 +28,13 @@ gcc:extra:
     - fmtlib/fmt@7.0.3
 node:latest:
   inputs:
-    -  common:latest
+    - common:latest
   packages: nodejs-current
 node:extra:
   inputs:
-    -  common:extra
+    - common:extra
   packages: nodejs-current npm
 node:lts:
   inputs:
-    -  common:latest
+    - common:latest
   packages: nodejs
