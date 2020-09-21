@@ -93,7 +93,7 @@
   - py3-bcrypt@3.2.0-r0
   - py3-cached-property@1.5.1-r1
   - py3-certifi@2020.6.20-r0
-  - py3-cffi@1.14.2-r0
+  - py3-cffi@1.14.3-r0
   - py3-chardet@3.0.4-r4
   - py3-cparser@2.20-r0
   - py3-cryptography@2.9.2-r0
@@ -219,7 +219,7 @@
   - ca-certificates@20191127-r4
   - nodejs-current@14.9.0-r0
   - nodejs@14.9.0-r0
-  - npm@12.18.3-r0
+  - npm@12.18.4-r0
   - 'so:libbrotlidec.so.1@1.0.9-r1'
   - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
   - 'so:libcares.so.2@1.16.1-r0'
@@ -234,7 +234,7 @@
   - /bin/sh@1.32.0-r3
   - ca-certificates@20191127-r4
   - nghttp2-libs@1.41.0-r0
-  - nodejs@12.18.3-r0
+  - nodejs@12.18.4-r0
   - 'so:libbrotlidec.so.1@1.0.9-r1'
   - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
   - 'so:libcares.so.2@1.16.1-r0'
