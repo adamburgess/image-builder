@@ -18,11 +18,7 @@ run ldd build/tools/cjpegxl
 from ubuntu
 
 copy --from=build /jpeg-xl/build/tools/cjpegxl /cjpegxl
-copy --from=build /jpeg-xl/build/tools/cjpegxl /djpegxl
-#run apt update
-#run apt install -y libjpeg8 libgif7 libpng16-16 openexr 
-#run apt install -y libgoogle-perftools4
-#run ldd cjpegxl
+copy --from=build /jpeg-xl/build/tools/djpegxl /djpegxl
 run apt-get update && \
     apt-get install -y libjpeg8 libgif7 libpng16-16 openexr libgoogle-perftools4 && \
     rm -rf /var/lib/apt/lists/*
