@@ -1,7 +1,10 @@
 binaries:mo:
-  packages: alpine-base
+  docker:
+    - library/alpine@edge
 common:latest:
-  packages: alpine-base bash curl wget tini htop nano
+  docker:
+    - library/alpine@edge
+  packages: bash curl wget tini htop nano
 common:extra:
   inputs:
     -  common:latest
@@ -18,6 +21,11 @@ gcc:extra:
   inputs:
     -  gcc:latest
   packages: gdb sqlite-dev
+  githubs:
+    - cgreen-devs/cgreen
+    - oktal/pistache
+    - open-source-parsers/jsoncpp
+    - fmtlib/fmt@7.0.3
 node:latest:
   inputs:
     -  common:latest
