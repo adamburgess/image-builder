@@ -16,14 +16,14 @@ images:
       - ncurses-terminfo-base@6.2_p20200918-r1
       - 'so:libbrotlidec.so.1@1.0.9-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
-      - 'so:libcrypto.so.1.1@1.1.1g-r0'
+      - 'so:libcrypto.so.1.1@1.1.1h-r0'
       - 'so:libcurl.so.4@7.72.0-r0'
       - 'so:libidn2.so.0@2.3.0-r0'
       - 'so:libmagic.so.1@5.39-r0'
       - 'so:libncursesw.so.6@6.2_p20200918-r1'
       - 'so:libnghttp2.so.14@1.41.0-r0'
       - 'so:libreadline.so.8@8.0.4-r0'
-      - 'so:libssl.so.1.1@1.1.1g-r0'
+      - 'so:libssl.so.1.1@1.1.1h-r0'
       - 'so:libunistring.so.2@0.9.10-r0'
       - 'so:libz.so.1@1.2.11-r3'
       - tini@0.19.0-r0
@@ -45,7 +45,7 @@ images:
       - 'so:libbrotlidec.so.1@1.0.9-r1'
       - 'so:libbz2.so.1@1.0.8-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
-      - 'so:libcrypto.so.1.1@1.1.1g-r0'
+      - 'so:libcrypto.so.1.1@1.1.1h-r0'
       - 'so:libcurl.so.4@7.72.0-r0'
       - 'so:libedit.so.0@20191231.3.1-r1'
       - 'so:libexpat.so.1@2.2.9-r1'
@@ -53,7 +53,7 @@ images:
       - 'so:libnghttp2.so.14@1.41.0-r0'
       - 'so:libpcre2-8.so.0@10.35-r0'
       - 'so:libpopt.so.0@1.18-r0'
-      - 'so:libssl.so.1.1@1.1.1g-r0'
+      - 'so:libssl.so.1.1@1.1.1h-r0'
       - 'so:libz.so.1@1.2.11-r3'
       - 'so:libzstd.so.1@1.4.5-r0'
       - sudo@1.9.1-r0
@@ -107,7 +107,7 @@ images:
       - python3@3.8.5-r0
       - 'so:libbz2.so.1@1.0.8-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
-      - 'so:libcrypto.so.1.1@1.1.1g-r0'
+      - 'so:libcrypto.so.1.1@1.1.1h-r0'
       - 'so:libexpat.so.1@2.2.9-r1'
       - 'so:libffi.so.7@3.3-r2'
       - 'so:libgdbm.so.4@1.13-r1'
@@ -115,7 +115,7 @@ images:
       - 'so:libncursesw.so.6@6.2_p20200918-r1'
       - 'so:libreadline.so.8@8.0.4-r0'
       - 'so:libsqlite3.so.0@3.33.0-r0'
-      - 'so:libssl.so.1.1@1.1.1g-r0'
+      - 'so:libssl.so.1.1@1.1.1h-r0'
       - 'so:libyaml-0.so.2@0.2.5-r0'
       - 'so:libz.so.1@1.2.11-r3'
     dockers: {}
@@ -134,15 +134,15 @@ images:
       - isl@0.18-r0
       - libatomic@10.2.0-r5
       - libc-dev@0.7.2-r3
-      - libcrypto1.1@1.1.1g-r0
+      - libcrypto1.1@1.1.1h-r0
       - libgomp@10.2.0-r5
       - libgphobos@10.2.0-r5
-      - libssl1.1@1.1.1g-r0
+      - libssl1.1@1.1.1h-r0
       - linux-headers@5.7.8-r0
       - make@4.3-r0
       - musl-dev@1.2.1-r1
       - ncurses-terminfo-base@6.2_p20200918-r1
-      - openssl-dev@1.1.1g-r0
+      - openssl-dev@1.1.1h-r0
       - patch@2.7.6-r6
       - pkgconfig@1.7.3-r0
       - 'so:libacl.so.1@2.2.53-r0'
@@ -175,7 +175,7 @@ images:
       - pkgconfig@1.7.3-r0
       - 'so:libbz2.so.1@1.0.8-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
-      - 'so:libcrypto.so.1.1@1.1.1g-r0'
+      - 'so:libcrypto.so.1.1@1.1.1h-r0'
       - 'so:libexpat.so.1@2.2.9-r1'
       - 'so:libffi.so.7@3.3-r2'
       - 'so:libgcc_s.so.1@10.2.0-r5'
@@ -185,7 +185,7 @@ images:
       - 'so:libpython3.8.so.1.0@3.8.5-r0'
       - 'so:libreadline.so.8@8.0.4-r0'
       - 'so:libsqlite3.so.0@3.33.0-r0'
-      - 'so:libssl.so.1.1@1.1.1g-r0'
+      - 'so:libssl.so.1.1@1.1.1h-r0'
       - 'so:libstdc++.so.6@10.2.0-r5'
       - 'so:libz.so.1@1.2.11-r3'
       - sqlite-dev@3.33.0-r0
@@ -203,10 +203,10 @@ images:
       - 'so:libbrotlidec.so.1@1.0.9-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
       - 'so:libcares.so.2@1.16.1-r0'
-      - 'so:libcrypto.so.1.1@1.1.1g-r0'
+      - 'so:libcrypto.so.1.1@1.1.1h-r0'
       - 'so:libgcc_s.so.1@10.2.0-r5'
       - 'so:libnghttp2.so.14@1.41.0-r0'
-      - 'so:libssl.so.1.1@1.1.1g-r0'
+      - 'so:libssl.so.1.1@1.1.1h-r0'
       - 'so:libstdc++.so.6@10.2.0-r5'
       - 'so:libuv.so.1@1.39.0-r0'
       - 'so:libz.so.1@1.2.11-r3'
@@ -222,10 +222,10 @@ images:
       - 'so:libbrotlidec.so.1@1.0.9-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
       - 'so:libcares.so.2@1.16.1-r0'
-      - 'so:libcrypto.so.1.1@1.1.1g-r0'
+      - 'so:libcrypto.so.1.1@1.1.1h-r0'
       - 'so:libgcc_s.so.1@10.2.0-r5'
       - 'so:libnghttp2.so.14@1.41.0-r0'
-      - 'so:libssl.so.1.1@1.1.1g-r0'
+      - 'so:libssl.so.1.1@1.1.1h-r0'
       - 'so:libstdc++.so.6@10.2.0-r5'
       - 'so:libuv.so.1@1.39.0-r0'
       - 'so:libz.so.1@1.2.11-r3'
@@ -240,9 +240,9 @@ images:
       - 'so:libbrotlidec.so.1@1.0.9-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
       - 'so:libcares.so.2@1.16.1-r0'
-      - 'so:libcrypto.so.1.1@1.1.1g-r0'
+      - 'so:libcrypto.so.1.1@1.1.1h-r0'
       - 'so:libgcc_s.so.1@10.2.0-r5'
-      - 'so:libssl.so.1.1@1.1.1g-r0'
+      - 'so:libssl.so.1.1@1.1.1h-r0'
       - 'so:libstdc++.so.6@10.2.0-r5'
       - 'so:libuv.so.1@1.39.0-r0'
       - 'so:libz.so.1@1.2.11-r3'
