@@ -11,11 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: login to docker
         run: 'docker login -u aburgess -p ${{ secrets.DOCKERHUB_PASSWORD }}'
-      - name: 'build node:latest'
-        run: 'docker build -t aburgess/node:latest -f node.latest.Dockerfile .'
-      - name: 'build node:extra'
-        run: 'docker build -t aburgess/node:extra -f node.extra.Dockerfile .'
-      - name: 'push node:latest node:extra'
-        run: |-
-          docker push aburgess/node:latest
-          docker push aburgess/node:extra
+      - name: 'build jpegxl:latest'
+        run: 'docker build -t aburgess/jpegxl:latest -f jpegxl.latest.Dockerfile .'
+      - name: 'push jpegxl:latest'
+        run: 'docker push aburgess/jpegxl:latest'
