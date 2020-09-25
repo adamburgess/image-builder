@@ -56,7 +56,7 @@ images:
       - 'so:libssl.so.1.1@1.1.1h-r0'
       - 'so:libz.so.1@1.2.11-r3'
       - 'so:libzstd.so.1@1.4.5-r0'
-      - sudo@1.9.3-r0
+      - sudo@1.9.3_p1-r0
       - tar@1.32-r1
     dockers: {}
     repos: {}
@@ -104,13 +104,13 @@ images:
       - py3-websocket-client@0.57.0-r0
       - py3-yaml@5.3.1-r1
       - py3-zipp@1.0.0-r0
-      - python3@3.8.5-r0
+      - python3@3.8.5-r1
       - 'so:libbz2.so.1@1.0.8-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
       - 'so:libcrypto.so.1.1@1.1.1h-r0'
       - 'so:libexpat.so.1@2.2.9-r1'
       - 'so:libffi.so.7@3.3-r2'
-      - 'so:libgdbm.so.4@1.13-r1'
+      - 'so:libgdbm_compat.so.4@1.18.1-r0'
       - 'so:liblzma.so.5@5.2.5-r0'
       - 'so:libncursesw.so.6@6.2_p20200918-r1'
       - 'so:libreadline.so.8@8.0.4-r0'
@@ -163,7 +163,7 @@ images:
       - 'so:libnghttp2.so.14@1.41.0-r0'
       - 'so:librhash.so.0@1.4.0-r0'
       - 'so:libstdc++.so.6@10.2.0-r5'
-      - 'so:libuv.so.1@1.39.0-r0'
+      - 'so:libuv.so.1@1.40.0-r0'
       - 'so:libz.so.1@1.2.11-r3'
       - 'so:libzstd.so.1@1.4.5-r0'
     dockers: {}
@@ -179,10 +179,10 @@ images:
       - 'so:libexpat.so.1@2.2.9-r1'
       - 'so:libffi.so.7@3.3-r2'
       - 'so:libgcc_s.so.1@10.2.0-r5'
-      - 'so:libgdbm.so.4@1.13-r1'
+      - 'so:libgdbm_compat.so.4@1.18.1-r0'
       - 'so:liblzma.so.5@5.2.5-r0'
       - 'so:libncursesw.so.6@6.2_p20200918-r1'
-      - 'so:libpython3.8.so.1.0@3.8.5-r0'
+      - 'so:libpython3.8.so.1.0@3.8.5-r1'
       - 'so:libreadline.so.8@8.0.4-r0'
       - 'so:libsqlite3.so.0@3.33.0-r0'
       - 'so:libssl.so.1.1@1.1.1h-r0'
@@ -208,7 +208,7 @@ images:
       - 'so:libnghttp2.so.14@1.41.0-r0'
       - 'so:libssl.so.1.1@1.1.1h-r0'
       - 'so:libstdc++.so.6@10.2.0-r5'
-      - 'so:libuv.so.1@1.39.0-r0'
+      - 'so:libuv.so.1@1.40.0-r0'
       - 'so:libz.so.1@1.2.11-r3'
     dockers: {}
     repos: {}
@@ -227,7 +227,7 @@ images:
       - 'so:libnghttp2.so.14@1.41.0-r0'
       - 'so:libssl.so.1.1@1.1.1h-r0'
       - 'so:libstdc++.so.6@10.2.0-r5'
-      - 'so:libuv.so.1@1.39.0-r0'
+      - 'so:libuv.so.1@1.40.0-r0'
       - 'so:libz.so.1@1.2.11-r3'
     dockers: {}
     repos: {}
@@ -244,13 +244,13 @@ images:
       - 'so:libgcc_s.so.1@10.2.0-r5'
       - 'so:libssl.so.1.1@1.1.1h-r0'
       - 'so:libstdc++.so.6@10.2.0-r5'
-      - 'so:libuv.so.1@1.39.0-r0'
+      - 'so:libuv.so.1@1.40.0-r0'
       - 'so:libz.so.1@1.2.11-r3'
     dockers: {}
     repos: {}
   'jpegxl:latest':
     packages: []
     dockers:
-      library/ubuntu: 'sha256:028d7303257c7f36c721b40099bf5004a41f666a54c0896d5f229f1c0fd99993'
+      library/ubuntu: 'sha256:2e70e9c81838224b5311970dbf7ed16802fbfe19e7a70b3cbfa3d7522aa285b4'
     repos:
       gitlab@wg1/jpeg-xl: d4bc7b08c1d44f489158b1c8fce7b8216e4cf57b
