@@ -104,13 +104,13 @@ images:
       - py3-websocket-client@0.57.0-r0
       - py3-yaml@5.3.1-r1
       - py3-zipp@1.0.0-r0
-      - python3@3.8.5-r1
+      - python3@3.8.5-r2
       - 'so:libbz2.so.1@1.0.8-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r1'
       - 'so:libcrypto.so.1.1@1.1.1h-r0'
       - 'so:libexpat.so.1@2.2.9-r1'
       - 'so:libffi.so.7@3.3-r2'
-      - 'so:libgdbm_compat.so.4@1.18.1-r0'
+      - 'so:libgdbm.so.6@1.18.1-r0'
       - 'so:liblzma.so.5@5.2.5-r0'
       - 'so:libncursesw.so.6@6.2_p20200918-r1'
       - 'so:libreadline.so.8@8.0.4-r0'
@@ -179,10 +179,10 @@ images:
       - 'so:libexpat.so.1@2.2.9-r1'
       - 'so:libffi.so.7@3.3-r2'
       - 'so:libgcc_s.so.1@10.2.0-r5'
-      - 'so:libgdbm_compat.so.4@1.18.1-r0'
+      - 'so:libgdbm.so.6@1.18.1-r0'
       - 'so:liblzma.so.5@5.2.5-r0'
       - 'so:libncursesw.so.6@6.2_p20200918-r1'
-      - 'so:libpython3.8.so.1.0@3.8.5-r1'
+      - 'so:libpython3.8.so.1.0@3.8.5-r2'
       - 'so:libreadline.so.8@8.0.4-r0'
       - 'so:libsqlite3.so.0@3.33.0-r0'
       - 'so:libssl.so.1.1@1.1.1h-r0'
