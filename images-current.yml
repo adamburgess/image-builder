@@ -65,7 +65,7 @@ images:
       - /bin/sh@1.32.0-r3
       - ca-certificates@20191127-r4
       - docker-cli@19.03.13-r0
-      - docker-compose@1.27.3-r0
+      - docker-compose@1.27.4-r0
       - docker-py@4.3.1-r0
       - dockerpy-creds@0.4.0-r2
       - ncurses-terminfo-base@6.2_p20200918-r1

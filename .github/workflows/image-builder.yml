@@ -13,9 +13,5 @@ jobs:
         run: 'docker login -u aburgess -p ${{ secrets.DOCKERHUB_PASSWORD }}'
       - name: 'build docker:latest'
         run: 'docker build -t aburgess/docker:latest -f docker.latest.Dockerfile .'
-      - name: 'build gcc:extra'
-        run: 'docker build -t aburgess/gcc:extra -f gcc.extra.Dockerfile .'
-      - name: 'push docker:latest gcc:extra'
-        run: |-
-          docker push aburgess/docker:latest
-          docker push aburgess/gcc:extra
+      - name: 'push docker:latest'
+        run: 'docker push aburgess/docker:latest'
