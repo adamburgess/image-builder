@@ -88,7 +88,7 @@ images:
       - py3-importlib-metadata@1.7.0-r0
       - py3-ipaddress@1.0.23-r1
       - py3-jsonschema@3.2.0-r0
-      - py3-more-itertools@8.4.0-r0
+      - py3-more-itertools@8.5.0-r0
       - py3-ordered-set@4.0.2-r0
       - py3-packaging@20.4-r0
       - py3-paramiko@2.7.2-r0
