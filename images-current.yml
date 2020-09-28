@@ -38,8 +38,8 @@ images:
       - dpkg@1.20.5-r2
       - git@2.28.0-r1
       - ncurses-terminfo-base@6.2_p20200926-r1
-      - openssh-client@8.3_p1-r0
-      - openssh-keygen@8.3_p1-r0
+      - openssh-client@8.4_p1-r0
+      - openssh-keygen@8.4_p1-r0
       - rsync@3.2.3-r0
       - 'so:libacl.so.1@2.2.53-r0'
       - 'so:libbrotlidec.so.1@1.0.9-r1'
