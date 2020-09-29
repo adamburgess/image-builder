@@ -253,4 +253,4 @@ images:
     dockers:
       library/ubuntu: 'sha256:2e70e9c81838224b5311970dbf7ed16802fbfe19e7a70b3cbfa3d7522aa285b4'
     repos:
-      gitlab@wg1/jpeg-xl: d4bc7b08c1d44f489158b1c8fce7b8216e4cf57b
+      gitlab@wg1/jpeg-xl: 849ebf6e9493ffd65d9ce72b3ac8cbe52a2a3bd3
