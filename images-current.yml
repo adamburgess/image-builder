@@ -199,7 +199,7 @@ images:
     packages:
       - /bin/sh@1.32.0-r3
       - ca-certificates@20191127-r4
-      - nodejs-current@14.12.0-r0
+      - nodejs-current@14.13.0-r0
       - 'so:libbrotlidec.so.1@1.0.9-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r2'
       - 'so:libcares.so.2@1.16.1-r0'
@@ -216,8 +216,8 @@ images:
     packages:
       - /bin/sh@1.32.0-r3
       - ca-certificates@20191127-r4
-      - nodejs-current@14.12.0-r0
-      - nodejs@14.12.0-r0
+      - nodejs-current@14.13.0-r0
+      - nodejs@14.13.0-r0
       - npm@12.18.4-r0
       - 'so:libbrotlidec.so.1@1.0.9-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r2'
