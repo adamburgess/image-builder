@@ -48,7 +48,7 @@ images:
       - 'so:libcrypto.so.1.1@1.1.1h-r0'
       - 'so:libcurl.so.4@7.72.0-r0'
       - 'so:libedit.so.0@20191231.3.1-r1'
-      - 'so:libexpat.so.1@2.2.9-r1'
+      - 'so:libexpat.so.1@2.2.10-r0'
       - 'so:libncursesw.so.6@6.2_p20201003-r1'
       - 'so:libnghttp2.so.14@1.41.0-r0'
       - 'so:libpcre2-8.so.0@10.35-r0'
@@ -108,7 +108,7 @@ images:
       - 'so:libbz2.so.1@1.0.8-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r2'
       - 'so:libcrypto.so.1.1@1.1.1h-r0'
-      - 'so:libexpat.so.1@2.2.9-r1'
+      - 'so:libexpat.so.1@2.2.10-r0'
       - 'so:libffi.so.7@3.3-r2'
       - 'so:libgdbm.so.6@1.18.1-r0'
       - 'so:liblzma.so.5@5.2.5-r0'
@@ -126,7 +126,7 @@ images:
       - binutils@2.35.1-r0
       - build-base@0.5-r2
       - ca-certificates@20191127-r4
-      - cmake@3.18.3-r0
+      - cmake@3.18.4-r0
       - file@5.39-r0
       - fortify-headers@1.1-r0
       - g++@10.2.0-r5
@@ -151,7 +151,7 @@ images:
       - 'so:libbz2.so.1@1.0.8-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r2'
       - 'so:libcurl.so.4@7.72.0-r0'
-      - 'so:libexpat.so.1@2.2.9-r1'
+      - 'so:libexpat.so.1@2.2.10-r0'
       - 'so:libformw.so.6@6.2_p20201003-r1'
       - 'so:libgcc_s.so.1@10.2.0-r5'
       - 'so:libgmp.so.10@6.2.0-r0'
@@ -176,7 +176,7 @@ images:
       - 'so:libbz2.so.1@1.0.8-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r2'
       - 'so:libcrypto.so.1.1@1.1.1h-r0'
-      - 'so:libexpat.so.1@2.2.9-r1'
+      - 'so:libexpat.so.1@2.2.10-r0'
       - 'so:libffi.so.7@3.3-r2'
       - 'so:libgcc_s.so.1@10.2.0-r5'
       - 'so:libgdbm.so.6@1.18.1-r0'
