@@ -12,7 +12,7 @@ images:
       - ca-certificates@20191127-r4
       - curl@7.72.0-r0
       - htop@3.0.2-r0
-      - nano@5.2-r0
+      - nano@5.3-r0
       - ncurses-terminfo-base@6.2_p20201003-r1
       - 'so:libbrotlidec.so.1@1.0.9-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r2'
