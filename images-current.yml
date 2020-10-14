@@ -10,14 +10,14 @@ images:
       - /bin/sh@1.32.0-r3
       - bash@5.0.18-r0
       - ca-certificates@20191127-r4
-      - curl@7.72.0-r0
+      - curl@7.73.0-r0
       - htop@3.0.2-r0
       - nano@5.3-r0
       - ncurses-terminfo-base@6.2_p20201010-r0
       - 'so:libbrotlidec.so.1@1.0.9-r2'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r2'
       - 'so:libcrypto.so.1.1@1.1.1h-r0'
-      - 'so:libcurl.so.4@7.72.0-r0'
+      - 'so:libcurl.so.4@7.73.0-r0'
       - 'so:libidn2.so.0@2.3.0-r0'
       - 'so:libmagic.so.1@5.39-r0'
       - 'so:libncursesw.so.6@6.2_p20201010-r0'
@@ -46,7 +46,7 @@ images:
       - 'so:libbz2.so.1@1.0.8-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r2'
       - 'so:libcrypto.so.1.1@1.1.1h-r0'
-      - 'so:libcurl.so.4@7.72.0-r0'
+      - 'so:libcurl.so.4@7.73.0-r0'
       - 'so:libedit.so.0@20191231.3.1-r1'
       - 'so:libexpat.so.1@2.2.10-r0'
       - 'so:libncursesw.so.6@6.2_p20201010-r0'
@@ -150,7 +150,7 @@ images:
       - 'so:libbrotlidec.so.1@1.0.9-r2'
       - 'so:libbz2.so.1@1.0.8-r1'
       - 'so:libc.musl-x86_64.so.1@1.2.1-r2'
-      - 'so:libcurl.so.4@7.72.0-r0'
+      - 'so:libcurl.so.4@7.73.0-r0'
       - 'so:libexpat.so.1@2.2.10-r0'
       - 'so:libformw.so.6@6.2_p20201010-r0'
       - 'so:libgcc_s.so.1@10.2.0-r5'
