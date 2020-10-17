@@ -192,7 +192,7 @@ images:
     dockers: {}
     repos:
       github@cgreen-devs/cgreen: d4fc13a53f9a8bbfaf4f7fdcd5f51b94c63bf1e7
-      github@oktal/pistache: a54a4fab00252a9bcc42a38b62abf102f7de7cf6
+      github@oktal/pistache: c04166ca9e6420a8fbc93fef4055ee2eccdcebe4
       github@open-source-parsers/jsoncpp: 5f4e10462fecdc9598fdcf20aad9558843abc212
       github@fmtlib/fmt@7.0.3: cd4af11efc9c622896a3e4cb599fa28668ca3d05
   'node:latest':
