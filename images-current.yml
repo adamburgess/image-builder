@@ -100,7 +100,7 @@ images:
       - py3-setuptools@50.3.2-r0
       - py3-six@1.15.0-r0
       - py3-texttable@1.6.3-r0
-      - py3-urllib3@1.25.10-r0
+      - py3-urllib3@1.25.11-r0
       - py3-websocket-client@0.57.0-r0
       - py3-yaml@5.3.1-r1
       - py3-zipp@1.0.0-r0
