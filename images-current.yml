@@ -36,7 +36,7 @@ images:
       - /bin/sh@1.32.0-r3
       - ca-certificates@20191127-r5
       - dpkg@1.20.5-r2
-      - git@2.29.1-r0
+      - git@2.29.2-r0
       - ncurses-terminfo-base@6.2_p20201024-r0
       - openssh-client@8.4_p1-r1
       - openssh-keygen@8.4_p1-r1
