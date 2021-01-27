@@ -25,13 +25,13 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.22.tgz#0d29f382472c4ccf3bd96ff0ce47daf5b7b84b18"
   integrity sha512-g+f/qj/cNcqKkc3tFqlXOYjrmZA+jNBiDzbP3kH+B+otKFqAdPgVTGP1IeKRdMml/aE69as5S4FqtxAbl+LaMw==
 
-alpine-apk@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/alpine-apk/-/alpine-apk-0.2.1.tgz#c1737180a49b9824b579baadc6bcaefc996f9c25"
-  integrity sha512-aIqP9n4rYyTMA3asXW8Hyjxf1PDiw1X4jyHNCb33vStygybQBUW0DhXhH0JFwmYE9XaaGdtnCdZJnaOqLE7ogA==
+alpine-apk@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/alpine-apk/-/alpine-apk-0.2.2.tgz#f9e4c1ad6e59397bae75d760cf253740aa8ad3dc"
+  integrity sha512-TcmQlJEV+wYRvZ4fvQvbxxGm9AGAGlHm+5Sb11gNPCPtWiUgoGJcU++eqx2qe6+IVPq9oE8HBUHPB6v9RBBDZQ==
   dependencies:
-    node-fetch "^2.6.0"
-    tar-stream "^2.1.3"
+    node-fetch "^2.6.1"
+    tar-stream "^2.2.0"
 
 ansi-regex@^2.0.0:
   version "2.1.1"
@@ -223,7 +223,7 @@ minimist@^1.1.0:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
 
-node-fetch@^2.6.0, node-fetch@^2.6.1:
+node-fetch@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
@@ -310,7 +310,7 @@ taketalk@^1.0.0:
     get-stdin "^4.0.1"
     minimist "^1.1.0"
 
-tar-stream@^2.1.3:
+tar-stream@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/tar-stream/-/tar-stream-2.2.0.tgz#acad84c284136b060dc3faa64474aa9aebd77287"
   integrity sha512-ujeqbceABgwMZxEJnk2HDY2DlnUZ+9oEcb1KzTVfYHio0UE6dG71n60d8D2I4qNvleWrrXpmjpt7vZeF1LnMZQ==
