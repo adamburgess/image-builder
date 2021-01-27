@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
+    "alpine-apk": "^0.2.1",
     "yosay": "^2.0.2"
   },
   "scripts": {
