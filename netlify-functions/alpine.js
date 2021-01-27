@@ -12,6 +12,7 @@ async function updatePackages() {
 }
 
 async function getDependenciesForPackages(packages) {
+    await updatePackages();
     let tree = alpineApk.getDependencyTree(...packages);
     return tree.split(',').filter(x => x).sort();
 }
