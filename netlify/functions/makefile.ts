@@ -19,43 +19,52 @@ interface ImagesYmlRaw {
 const netlifyUrl = `https://adamburgess-image-builder.netlify.app/.netlify/functions`;
 
 function dockerToTarget(docker: string) {
-    return `docker-${docker}:
-\techo [Docker] ${docker}
-\tcurl ${netlifyUrl}/docker?docker=${docker} > docker-${docker}.tmp
-\t$(call replace_if_different,docker-${docker})
+    const s = sanitise(docker);
+    return `docker-${s}: FORCE
+\t@echo [Docker] ${docker}
+\t@curl -s ${netlifyUrl}/docker?docker=${docker} > docker-${s}.tmp
+\t$(call replace_if_different,docker-${s})
 
 `
 }
 
 function alpineToTarget(pkg: string) {
-    return `package-${pkg}:
-\techo [Alpine Package] ${pkg}
-\tcurl ${netlifyUrl}/alpine?package=${pkg} > package-${pkg}.tmp
-\t$(call replace_if_different,package-${pkg})
+    const s = sanitise(pkg);
+    return `package-${s}: FORCE
+\t@echo [Alpine Package] ${pkg}
+\t@curl -s ${netlifyUrl}/alpine?package=${pkg} > package-${s}.tmp
+\t$(call replace_if_different,package-${s})
 
 `
 }
 
 function repoToTarget(repo: string) {
-    return `repo-${repo}:
-\techo [Repo] ${repo}
-\tcurl ${netlifyUrl}/repo?repo=${repo} > repo-${repo}.tmp
-\t$(call replace_if_different,repo-${repo})
+    const s = sanitise(repo);
+    return `repo-${s}: FORCE
+\t@echo [Repo] ${repo}
+\t@curl -s ${netlifyUrl}/repo?repo=${repo} > repo-${s}.tmp
+\t$(call replace_if_different,repo-${s})
 
 `
 }
 
+function sanitise(name: string) {
+    return name.replace(/:/g, '.').replace(/\//g, '_');
+}
+
 function imageToTarget(image: string, repos: string[], dockers: string[], packages: string[], inputs: string[]) {
-    const repoTargets = repos.map(r => 'repo-' + r).join(' ');
-    const dockerTargets = dockers.map(d => 'docker-' + d).join(' ');
-    const packageTargets = packages.map(p => 'package-' + p).join(' ');
-    const inputTargets = inputs.map(i => 'image-' + i.replace(':', '.'));
+    const repoTargets = repos.map(r => 'repo-' + sanitise(r)).join(' ');
+    const dockerTargets = dockers.map(d => 'docker-' + sanitise(d)).join(' ');
+    const packageTargets = packages.map(p => 'package-' + sanitise(p)).join(' ');
+    const inputTargets = inputs.map(i => 'image-' + sanitise(i));
     
-    const imageFile = image.replace(':', '.');
+    const imageFile = sanitise(image);
+
     const targets = [repoTargets, dockerTargets, packageTargets, inputTargets, 'login', `dockerfiles/${imageFile}.Dockerfile`];
     return `image-${imageFile}: ${targets.filter(t => t.length !== 0).join(' ')}
-\techo [Image] ${image}
-\tcd dockerfiles && docker build -t ${image} -f ${imageFile}.Dockerfile . > ../image-${imageFile}
+\t@echo [Image] ${image}
+\t@cd dockerfiles && docker build -t ${image} -f ${imageFile}.Dockerfile . > ../image-${imageFile}
+\tdocker push ${image}
 
 `
 }
@@ -71,22 +80,26 @@ async function handler(event: HandlerEvent, context: any) {
 `;
 
     makefile += `define replace_if_different
-\tif test -r $(1); \\
+\t@if test -r $(1); \\
 \tthen \\
-\t  cmp $(1) $(1).tmp && rm $(1).tmp || mv -f $(1).tmp $(1) \\
+\t  cmp -s $(1) $(1).tmp && rm $(1).tmp || mv -f $(1).tmp $(1); \\
 \telse \\
-\t  mv $(1).tmp $(1) \\
+\t  mv $(1).tmp $(1); \\
 \tfi
 endef
 
 `;
 
+    makefile += `FORCE:
+
+`;
+
     // create the all target
-    makefile += `all: ${Object.keys(yml).join(' ')}
+    makefile += `all: ${Object.keys(yml).map(k => 'image-' + sanitise(k)).join(' ')}
 `;
 
     makefile += `login:
-\tdocker login -u \${DOCKER_USERNAME} -p \${DOCKER_PASSWORD}
+\t@docker login -u \${DOCKER_USERNAME} -p \${DOCKER_PASSWORD}
 
 `;
 
@@ -121,4 +134,4 @@ endef
 
 exports.handler = handler;
 
-//handler({ body: require('fs').readFileSync('../images.yml', 'utf8'), queryStringParameters: {} }, undefined).then(x => console.log(x));
+//handler({ body: require('fs').readFileSync('../images.yml', 'utf8'), queryStringParameters: {} }, undefined).then(x => require('fs').writeFileSync('../Makefile', x.body));

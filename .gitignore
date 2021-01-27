@@ -2,3 +2,4 @@ docker-compose.yml
 .act
 netlify/node_modules
 netlify/functions/*.js
+Makefile
