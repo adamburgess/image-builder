@@ -25,6 +25,6 @@ exports.handler = async function (event, context) {
         headers: {
             'Content-Type': 'text/plain'
         },
-        body: JSON.stringify(dependencies)
+        body: dependencies.join(' ')
     };
 }
