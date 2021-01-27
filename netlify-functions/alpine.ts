@@ -24,7 +24,7 @@ interface HandlerEvent {
 }
 
 exports.handler = async function (event: HandlerEvent, context: any) {
-    const packages = event.queryStringParameters.packages.split(' ');
+    const packages = event.queryStringParameters.packages.split(',');
     const dependencies = await getDependenciesForPackages(packages);
     return {
         statusCode: 200,
