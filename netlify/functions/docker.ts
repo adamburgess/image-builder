@@ -14,13 +14,7 @@ interface DockerTagResponse {
     last_updated: string
 }
 
-const dockerCache: {
-    [name: string]: string
-} = {};
-
 async function getDockerSha(input: string) {
-    if (input in dockerCache) return dockerCache[input];
-
     let [repo, tag] = input.split('@');
     if (tag === undefined) tag = 'latest';
 
@@ -29,10 +23,10 @@ async function getDockerSha(input: string) {
     const json = await response.json() as DockerTagResponse;
 
     const amd64 = json.images.find(d => d.architecture === 'amd64');
-    if (amd64 !== undefined) return dockerCache[input] = amd64.digest;
+    if (amd64 !== undefined) return amd64.digest;
 
     // couldnt find amd64, so instead return last modified
-    return dockerCache[input] = json.last_updated;
+    return json.last_updated;
 }
 
 exports.handler = async function (event: HandlerEvent, context: any) {
