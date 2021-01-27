@@ -1,7 +1,8 @@
 const yosay = require('yosay');
 
 exports.handler = async function (event, context) {
-    const text = yosay('hi ' + event.queryStringParameters);
+    console.log(event);
+    const text = yosay('hi ' + JSON.stringify(event.queryStringParameters));
     return {
         statusCode: 200,
         headers: {
