@@ -60,7 +60,7 @@ function imageToTarget(image: string, repos: string[], dockers: string[], packag
     
     const imageFile = sanitise(image);
 
-    const targets = [repoTargets, dockerTargets, packageTargets, inputTargets, `dockerfiles/${imageFile}.Dockerfile`];
+    const targets = [repoTargets, dockerTargets, packageTargets, inputTargets];
     return `image-${imageFile}: ${targets.filter(t => t.length !== 0).join(' ')}
 \t@echo [Image] ${image}
 \t@cd ../dockerfiles && docker build -t ${image} -f ${imageFile}.Dockerfile . > ../builder/image-${imageFile}
