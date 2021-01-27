@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "target": "es2020",
+        "lib": ["es2019"],
+    },
+    "include": ["netlify-functions"]
+}

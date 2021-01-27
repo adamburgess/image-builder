@@ -1,4 +1,4 @@
-const AlpineApk = require('alpine-apk');
+import AlpineApk from 'alpine-apk'
 
 const alpineApk = new AlpineApk();
 
@@ -11,13 +11,19 @@ async function updatePackages() {
     }
 }
 
-async function getDependenciesForPackages(packages) {
+async function getDependenciesForPackages(packages: string[]) {
     await updatePackages();
     let tree = alpineApk.getDependencyTree(...packages);
     return tree.split(',').filter(x => x).sort();
 }
 
-exports.handler = async function (event, context) {
+interface HandlerEvent {
+    queryStringParameters: {
+        [key: string]: string
+    }
+}
+
+exports.handler = async function (event: HandlerEvent, context: any) {
     const packages = event.queryStringParameters.packages.split(' ');
     const dependencies = await getDependenciesForPackages(packages);
     return {
