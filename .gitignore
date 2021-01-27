@@ -1,4 +1,4 @@
 docker-compose.yml
 .act
-node_modules
+netlify/node_modules
 netlify-functions/*.js
