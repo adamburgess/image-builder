@@ -1,4 +1,4 @@
-import yosay from 'yosay'
+const yosay = require('yosay');
 
 exports.handler = async function (event, context) {
     const text = yosay('hi ' + event.path);
