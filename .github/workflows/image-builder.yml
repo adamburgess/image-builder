@@ -2,7 +2,7 @@ name: makefile-builder
 on:
   push:
     paths-ignore:
-      - netlify
+      - 'netlify/**'
 jobs:
   build:
     runs-on: ubuntu-latest
