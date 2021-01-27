@@ -15,7 +15,7 @@ jobs:
         with:
           path: |
             builder
-          key: ${{ runner.os }}-${{ hashFiles('images.yml') }}
+          key: ${{ hashFiles('images.yml') }}-${{ hashFiles('dockerfiles/*') }}
       - name: Create builder if not exists
         run: mkdir -p builder
       - name: Fetch Makefile
