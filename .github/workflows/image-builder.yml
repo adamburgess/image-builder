@@ -3,6 +3,8 @@ on:
   push:
     paths-ignore:
       - 'netlify/**'
+  schedule:
+    - cron: '0 */12 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest

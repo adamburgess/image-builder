@@ -64,8 +64,8 @@ function imageToTarget(image: string, repos: string[], dockers: string[], packag
     return `image-${imageFile}: ${targets.filter(t => t.length !== 0).join(' ')}
 \t@echo [Image] ${image}
 \tcd ../dockerfiles && docker build -t aburgess/${image} -f ${imageFile}.Dockerfile .
-\t@touch image-${imageFile}
 \tdocker push aburgess/${image}
+\t@touch image-${imageFile}
 
 `
 }
