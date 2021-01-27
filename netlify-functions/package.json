@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "yosay": "^2.0.2"
+  }
+}
