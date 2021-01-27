@@ -60,7 +60,7 @@ function imageToTarget(image: string, repos: string[], dockers: string[], packag
     
     const imageFile = sanitise(image);
 
-    const targets = [repoTargets, dockerTargets, packageTargets, inputTargets, 'login', `dockerfiles/${imageFile}.Dockerfile`];
+    const targets = [repoTargets, dockerTargets, packageTargets, inputTargets, `dockerfiles/${imageFile}.Dockerfile`];
     return `image-${imageFile}: ${targets.filter(t => t.length !== 0).join(' ')}
 \t@echo [Image] ${image}
 \t@cd dockerfiles && docker build -t ${image} -f ${imageFile}.Dockerfile . > ../image-${imageFile}
@@ -96,11 +96,6 @@ endef
 
     // create the all target
     makefile += `all: ${Object.keys(yml).map(k => 'image-' + sanitise(k)).join(' ')}
-`;
-
-    makefile += `login:
-\t@docker login -u \${DOCKER_USERNAME} -p \${DOCKER_PASSWORD}
-
 `;
 
     const images = Object.entries(yml).map(e => ({
