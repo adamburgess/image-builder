@@ -96,20 +96,20 @@ SHELL := /bin/bash
 # and it is the same as the new old file, remove it.
 # if it has changed, replace the file.
 # if it does not exist, move it.
-\tif [ -r $(1) ]                                            \\
-\tthen                                                      \\
-\t  if cmp -s $(1) $(1).tmp                                 \\
-\t  then                                                    \\
-\t      echo $(1) - no change                               \\
-\t      rm $(1).tmp                                         \\
-\t  else                                                    \\
-\t      echo $(1) - changed!                                \\
-\t      echo \`cat $(1)\` -\\> \`cat $(1).tmp\`             \\
-\t      mv -f $(1).tmp $(1)                                 \\
-\t  fi                                                      \\
-\telse                                                      \\
-\t  echo $(1) - first time: \`cat $(1).tmp\`                \\
-\t  mv $(1).tmp $(1)                                        \\
+\t@if [ -r $(1) ];                                           \\
+\tthen                                                       \\
+\t  if cmp -s $(1) $(1).tmp;                                 \\
+\t  then                                                     \\
+\t      echo $(1) - no change;                               \\
+\t      rm $(1).tmp;                                         \\
+\t  else                                                     \\
+\t      echo $(1) - changed!;                                \\
+\t      echo \`cat $(1)\` -\\> \`cat $(1).tmp\`;             \\
+\t      mv -f $(1).tmp $(1);                                 \\
+\t  fi;                                                      \\
+\telse                                                       \\
+\t  echo $(1) - first time: \`cat $(1).tmp\`;                \\
+\t  mv $(1).tmp $(1);                                        \\
 \tfi
 endef
 
