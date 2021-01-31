@@ -18,12 +18,14 @@ jobs:
           path: |
             builder
           key: ${{ hashFiles('version.yml') }}
-      - name: Print
+      - name: Create builder if not exists
+        run: mkdir -p builder
+      - name: Fetch Makefile
+        run: curl --data-binary "@images.yml" https://adamburgess-image-builder.netlify.app/.netlify/functions/makefile > builder/Makefile
+      - name: Build packages
+        working-directory: builder
+        run: make all
+      - name: Print builder
         run: tree builder
-#      - name: Create builder if not exists
-#        run: mkdir -p builder
-#      - name: Fetch Makefile
-#        run: curl --data-binary "@images.yml" https://adamburgess-image-builder.netlify.app/.netlify/functions/makefile > builder/Makefile
-#      - name: Build packages
-#        working-directory: builder
-#        run: make all
+      - name: Remove .tmp
+        run: rm builder/*.tmp
