@@ -92,7 +92,7 @@ SHELL := /bin/bash
 `;
 
     makefile += `define replace_if_different
-\t# if file exists,                                         \\
+\t@# if file exists,                                        \\
 \tif [ -r $(1) ]                                            \\
 \tthen                                                      \\
 \t  # if the new file is the same as the old file,          \\
@@ -103,7 +103,7 @@ SHELL := /bin/bash
 \t  else                                                    \\
 \t      # otherwise, print a message and replace the file.  \\
 \t      echo $(1) - changed!                                \\
-\t      echo \`cat $(1)\` -> \`cat $(1).tmp\`               \\
+\t      echo \`cat $(1)\` -\\> \`cat $(1).tmp\`             \\
 \t      mv -f $(1).tmp $(1)                                 \\
 \t  fi                                                      \\
 \telse                                                      \\
