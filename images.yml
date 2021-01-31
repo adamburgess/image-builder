@@ -38,8 +38,8 @@ node:lts:
   inputs:
     - common:latest
   packages: nodejs
-#jpegxl:latest:
-#  repos:
-#    - gitlab@wg1/jpeg-xl
-#  dockers:
-#    - library/ubuntu
+jpegxl:latest:
+  repos:
+    - gitlab@wg1/jpeg-xl
+  dockers:
+    - library/ubuntu
