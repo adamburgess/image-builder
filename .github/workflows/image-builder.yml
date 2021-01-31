@@ -22,11 +22,11 @@ jobs:
       - name: Create builder if not exists
         run: mkdir -p builder
       - name: Print Makefile cache (pre)
-        run: ls -al builder
+        run: ls -Al builder
       - name: Fetch Makefile
         run: curl --data-binary "@images.yml" https://adamburgess-image-builder.netlify.app/.netlify/functions/makefile > builder/Makefile
       - name: Build packages
         working-directory: builder
         run: make all
       - name: Print Makefile cache (post)
-        run: ls -al builder
+        run: ls -Al builder
