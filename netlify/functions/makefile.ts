@@ -84,12 +84,15 @@ async function handler(event: HandlerEvent, context: any) {
 
     let makefile = '';
 
-    makefile += `.PHONY: all login
+    makefile += `
+SHELL := /bin/bash
+
+.PHONY: all login
 
 `;
 
     makefile += `define replace_if_different
-\t@# if file exists,                                        \\
+\t# if file exists,                                         \\
 \tif [ -r $(1) ]                                            \\
 \tthen                                                      \\
 \t  # if the new file is the same as the old file,          \\
