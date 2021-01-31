@@ -32,16 +32,16 @@ Packages:
 * build-base (alpine's build-essential)
 * linux-headers
 * openssl-dev
-* CMake 3.16.0-rc3
+* cmake
 
 ### aburgess/gcc:extra
 
-Base image: aburgess/gcc:extra
+Base image: aburgess/gcc:latest
 
 Adds:
 * GDB
-* CGreen (testing)
-* Pistache (HTTP)
+* [CGreen (testing)](https://github.com/cgreen-devs/cgreen)
+* [fmt](https://github.com/fmtlib/fmt)
 I will add stuff to this image when I don't want to recompile dependencies.
 
 ### aburgess/node:latest and aburgess/node:lts
