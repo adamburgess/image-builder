@@ -8,7 +8,6 @@ Alpine, but with:
 * htop
 * tini (init)
 * nano
-* htop
 
 Makes debugging easier. A good base image for final stages.
 
