@@ -81,11 +81,21 @@ async function handler(event: HandlerEvent, context: any) {
 `;
 
     makefile += `define replace_if_different
-\t@if test -r $(1); \\
-\tthen \\
-\t  cmp -s $(1) $(1).tmp && rm $(1).tmp || mv -f $(1).tmp $(1); \\
-\telse \\
-\t  mv $(1).tmp $(1); \\
+\t# if file exists,                                         \\
+\t@if [ -r $(1) ]                                           \\
+\tthen                                                      \\
+\t  # if the new file is the same as the old file,          \\
+\t  if cmp -s $(1) $(1).tmp                                 \\
+\t  then                                                    \\
+\t      rm $(1).tmp                                         \\
+\t  else                                                    \\
+\t      # otherwise, print a message and replace the file.  \\
+\t      echo $(1) changed!                                  \\
+\t      echo \`cat $(1)\` -> \`cat $(1).tmp\`               \\
+\t      mv -f $(1).tmp $(1)                                 \\
+\t  fi                                                      \\
+\telse                                                      \\
+\t  mv $(1).tmp $(1);                                       \\
 \tfi
 endef
 
