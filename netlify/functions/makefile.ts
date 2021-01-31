@@ -60,14 +60,22 @@ function imageToTarget(image: string, repos: string[], dockers: string[], packag
     
     const imageFile = sanitise(image);
 
-    const targets = [repoTargets, dockerTargets, packageTargets, inputTargets];
-    return `image-${imageFile}: ${targets.filter(t => t.length !== 0).join(' ')}
+    const dockerfileTarget = `dockerfile-${imageFile}: FORCE
+\t@cat ../dockerfiles/${imageFile}.Dockerfile | sha256sum > dockerfile-${imageFile}.tmp
+\t$(call replace_if_different,dockerfile-${imageFile})
+
+`;
+
+    const targets = [repoTargets, dockerTargets, packageTargets, inputTargets, `dockerfile-${imageFile}`];
+    const imageFileTarget = `image-${imageFile}: ${targets.filter(t => t.length !== 0).join(' ')}
 \t@echo [Image] ${image}
 \tcd ../dockerfiles && docker build -t aburgess/${image} -f ${imageFile}.Dockerfile .
 \tdocker push aburgess/${image}
 \t@touch image-${imageFile}
 
-`
+`;
+
+    return dockerfileTarget + imageFileTarget;
 }
 
 async function handler(event: HandlerEvent, context: any) {
