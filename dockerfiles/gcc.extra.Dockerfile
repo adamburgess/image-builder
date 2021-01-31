@@ -25,7 +25,7 @@ run git clone --depth 1 https://github.com/open-source-parsers/jsoncpp.git && \
     cd ../.. && rm -rf jsoncpp
 
 # fmt, a formatting library
-run git clone --depth 1 --branch 7.0.3 https://github.com/fmtlib/fmt.git && \
+run git clone --depth 1 --branch 7.1.3 https://github.com/fmtlib/fmt.git && \
     cd fmt && \
     mkdir build && cd build && cmake .. -DCMAKE_SKIP_INSTALL_ALL_DEPENDENCY=1 && \
     make -j fmt && make install && \
