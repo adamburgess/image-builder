@@ -91,11 +91,12 @@ SHELL := /bin/bash
 
 `;
 
-    makefile += `define replace_if_different
+    makefile += `
 # if file exists,
 # and it is the same as the new old file, remove it.
 # if it has changed, replace the file.
 # if it does not exist, move it.
+define replace_if_different
 \t@if [ -r $(1) ];                                           \\
 \tthen                                                       \\
 \t  if cmp -s $(1) $(1).tmp;                                 \\
