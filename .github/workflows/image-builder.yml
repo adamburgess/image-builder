@@ -27,5 +27,3 @@ jobs:
         run: make all
       - name: Print builder
         run: tree builder
-      - name: Remove .tmp
-        run: rm builder/*.tmp
