@@ -15,9 +15,12 @@ jobs:
       - name: restore Makefile cache
         uses: actions/cache@v2
         with:
-          path: |
-            builder
-          key: ${{ hashFiles('version.yml') }}
+          path: builder
+          key: ${{ runner.os }}-${{ hashFiles('version.yml') }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-${{ hashFiles('version.yml') }}-
+      - name: Print Makefile cache (pre)
+        run: ls -al builder
       - name: Create builder if not exists
         run: mkdir -p builder
       - name: Fetch Makefile
@@ -25,5 +28,5 @@ jobs:
       - name: Build packages
         working-directory: builder
         run: make all
-      - name: Print builder
-        run: tree builder
+      - name: Print Makefile cache (post)
+        run: ls -al builder
