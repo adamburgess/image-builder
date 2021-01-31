@@ -16,13 +16,13 @@ jobs:
         uses: actions/cache@v2
         with:
           path: builder
-          key: ${{ runner.os }}-${{ hashFiles('version.yml') }}-${{ github.sha }}
+          key: ${{ hashFiles('version.yml') }}-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-${{ hashFiles('version.yml') }}-
-      - name: Print Makefile cache (pre)
-        run: ls -al builder
+            ${{ hashFiles('version.yml') }}-
       - name: Create builder if not exists
         run: mkdir -p builder
+      - name: Print Makefile cache (pre)
+        run: ls -al builder
       - name: Fetch Makefile
         run: curl --data-binary "@images.yml" https://adamburgess-image-builder.netlify.app/.netlify/functions/makefile > builder/Makefile
       - name: Build packages
