@@ -92,10 +92,10 @@ SHELL := /bin/bash
 `;
 
     makefile += `define replace_if_different
-\t# if file exists,
-\t# and it is the same as the new old file, remove it.
-\t# if it has changed, replace the file.
-\t# if it does not exist, move it.
+# if file exists,
+# and it is the same as the new old file, remove it.
+# if it has changed, replace the file.
+# if it does not exist, move it.
 \tif [ -r $(1) ]                                            \\
 \tthen                                                      \\
 \t  if cmp -s $(1) $(1).tmp                                 \\
@@ -109,7 +109,7 @@ SHELL := /bin/bash
 \t  fi                                                      \\
 \telse                                                      \\
 \t  echo $(1) - first time: \`cat $(1).tmp\`                \\
-\t  mv $(1).tmp $(1);                                       \\
+\t  mv $(1).tmp $(1)                                        \\
 \tfi
 endef
 
