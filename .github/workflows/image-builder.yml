@@ -16,7 +16,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: builder
-          key: ${{ hashFiles('version.yml') }}-${{ github.sha }}
+          key: ${{ hashFiles('version.yml') }}-${{ github.sha }}-${{ github.run_id }}
           restore-keys: |
             ${{ hashFiles('version.yml') }}-
       - name: Create builder if not exists
