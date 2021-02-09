@@ -22,7 +22,7 @@ function dockerToTarget(docker: string) {
     const s = sanitise(docker);
     return `docker-${s}: FORCE
 \t@echo [Docker] ${docker}
-\t@curl -s ${netlifyUrl}/docker?docker=${docker} > docker-${s}.tmp
+\t@curl -s -G --data-urlencode "docker=${docker}" ${netlifyUrl}/docker > docker-${s}.tmp
 \t$(call replace_if_different,docker-${s})
 
 `
@@ -32,7 +32,7 @@ function alpineToTarget(pkg: string) {
     const s = sanitise(pkg);
     return `package-${s}: FORCE
 \t@echo [Alpine Package] ${pkg}
-\t@curl -s ${netlifyUrl}/alpine?package=${pkg} > package-${s}.tmp
+\t@curl -s -G --data-urlencode "package=${pkg}" ${netlifyUrl}/alpine > package-${s}.tmp
 \t$(call replace_if_different,package-${s})
 
 `
@@ -42,7 +42,7 @@ function repoToTarget(repo: string) {
     const s = sanitise(repo);
     return `repo-${s}: FORCE
 \t@echo [Repo] ${repo}
-\t@curl -s ${netlifyUrl}/repo?repo=${repo} > repo-${s}.tmp
+\t@curl -s -G --data-urlencode "repo=${repo}" ${netlifyUrl}/repo > repo-${s}.tmp
 \t$(call replace_if_different,repo-${s})
 
 `
