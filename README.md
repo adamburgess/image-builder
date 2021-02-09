@@ -8,6 +8,7 @@ Alpine, but with:
 * htop
 * tini (init)
 * nano
+* libstdc++
 
 Makes debugging easier. A good base image for final stages.
 

@@ -4,7 +4,7 @@ binaries:mo:
 common:latest:
   dockers:
     - library/alpine@edge
-  packages: bash curl wget tini htop nano
+  packages: bash curl wget tini htop nano libstdc++
 common:extra:
   inputs:
     - common:latest
