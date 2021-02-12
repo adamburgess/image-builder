@@ -105,7 +105,8 @@ define replace_if_different
 \t      rm $(1).tmp;                                         \\
 \t  else                                                     \\
 \t      echo $(1) - changed!;                                \\
-\t      echo \`cat $(1)\` -\\> \`cat $(1).tmp\`;             \\
+\t      echo \`cat $(1)\` -\\>                               \\
+\t      echo \`cat $(1).tmp\`                                \\
 \t      mv -f $(1).tmp $(1);                                 \\
 \t  fi;                                                      \\
 \telse                                                       \\
