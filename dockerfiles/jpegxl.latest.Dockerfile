@@ -8,7 +8,6 @@ run apt-get install -y git \
 run git clone https://gitlab.com/wg1/jpeg-xl.git --recursive
 workdir /jpeg-xl
 run SKIP_TEST=1 ./ci.sh release
-run ldd build/tools/cjxl
 
 from ubuntu
 
@@ -17,3 +16,5 @@ run apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 copy --from=build /jpeg-xl/build/tools/cjxl /jpeg-xl/build/tools/djxl /
+
+run ldd /cjxl && ! (ldd cjxl | grep -q "not found")
