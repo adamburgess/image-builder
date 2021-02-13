@@ -7,6 +7,7 @@ run apt-get install -y git \
     extra-cmake-modules pkg-config libwebp-dev libpng-dev libopenexr-dev
 run git clone https://gitlab.com/wg1/jpeg-xl.git --recursive
 workdir /jpeg-xl
+run sed -i 's/-- all doc/-- cjxl djxl/' ci.sh
 run SKIP_TEST=1 ./ci.sh release
 
 from ubuntu
