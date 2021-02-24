@@ -49,10 +49,11 @@ I will add stuff to this image when I don't want to recompile dependencies.
 Base image: aburgess/common:latest  
 With the latest version of node and the LTS version, respectively.
 
-### [aburgess/node:extra](https://hub.docker.com/r/aburgess/node)
+### [aburgess/node:latest-npm and aburgess/node:lts-npm](https://hub.docker.com/r/aburgess/node)
 
-Base image: aburgess/common:extra  
-Adds the latest version of node, with npm and yarn.
+Base image: aburgess/node:latest or aburgess/note:lts  
+Includes the latest version of npm and yarn.  
+Generally you build on this image, then have a final stage on the other image.
 
 ### [aburgess/docker:latest](https://hub.docker.com/r/aburgess/docker)
 

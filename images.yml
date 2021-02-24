@@ -23,21 +23,26 @@ gcc:extra:
   packages: gdb sqlite-dev
   repos:
     - github@cgreen-devs/cgreen
-#    - github@oktal/pistache 
     - github@open-source-parsers/jsoncpp
     - github@fmtlib/fmt@7.1.3
 node:latest:
   inputs:
     - common:latest
   packages: nodejs-current
-node:extra:
+node:latest-npm:
   inputs:
-    - common:extra
-  packages: nodejs-current npm
+    - node:latest
+  packages: npm git
+  npm: npm yarn
 node:lts:
   inputs:
     - common:latest
   packages: nodejs
+node:lts-npm:
+  inputs:
+    - node:lts
+  packages: npm git
+  npm: npm yarn
 jpegxl:latest:
   repos:
     - gitlab@wg1/jpeg-xl
