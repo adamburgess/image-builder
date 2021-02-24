@@ -14,7 +14,7 @@ Makes debugging easier. A good base image for final stages.
 
 ### [aburgess/common:extra](https://hub.docker.com/r/aburgess/extra)
 
-Any misc extra packages to use when building.
+Any misc extra packages to use when building.  
 Base image: common:latest
 
 Packages:
@@ -46,12 +46,12 @@ I will add stuff to this image when I don't want to recompile dependencies.
 
 ### [aburgess/node:latest and aburgess/node:lts](https://hub.docker.com/r/aburgess/node)
 
-Base image: aburgess/common:latest
+Base image: aburgess/common:latest  
 With the latest version of node and the LTS version, respectively.
 
 ### [aburgess/node:extra](https://hub.docker.com/r/aburgess/node)
 
-Base image: aburgess/common:extra
+Base image: aburgess/common:extra  
 Adds the latest version of node, with npm and yarn.
 
 ### [aburgess/docker:latest](https://hub.docker.com/r/aburgess/docker)
@@ -62,8 +62,7 @@ Docker in docker. Not really used very often.
 
 Since docker doesn't cache "ADD", I just store final binaries in these packages.
 
-
 ### [aburgess/jpegxl](https://hub.docker.com/r/aburgess/jpegxl)
 
-Base image: ubuntu
+Base image: ubuntu  
 Builds the latest version of the [JPEG XL encoder/decoder](https://gitlab.com/wg1/jpeg-xl/) and provides them as /cjxl and /djxl.
