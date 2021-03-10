@@ -35,7 +35,7 @@ node:latest-npm:
   inputs:
     - node:latest
   packages: npm git
-  npm: npm yarn
+  npm: npm yarn pnpm
 node:lts:
   inputs:
     - common:latest
@@ -44,7 +44,7 @@ node:lts-npm:
   inputs:
     - node:lts
   packages: npm git
-  npm: npm yarn
+  npm: npm yarn pnpm
 jpegxl:latest:
   repos:
     - gitlab@wg1/jpeg-xl

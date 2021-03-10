@@ -52,7 +52,7 @@ With the latest version of node and the LTS version, respectively.
 ### [aburgess/node:latest-npm and aburgess/node:lts-npm](https://hub.docker.com/r/aburgess/node)
 
 Base image: aburgess/node:latest or aburgess/note:lts  
-Includes the latest version of npm and yarn.  
+Includes the latest version of npm, yarn, and pnpm.
 Generally you build on this image, then have a final stage on the other image.
 
 ### [aburgess/docker:latest](https://hub.docker.com/r/aburgess/docker)
