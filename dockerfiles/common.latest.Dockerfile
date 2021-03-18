@@ -8,4 +8,5 @@ copy prompt.sh /root/.bashrc
 
 env TERM xterm-256color
 
+shell ["/bin/bash", "-c"]
 entrypoint [ "/bin/bash" ]
