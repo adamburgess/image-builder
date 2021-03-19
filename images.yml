@@ -34,8 +34,8 @@ node:latest:
 node:latest-npm:
   inputs:
     - node:latest
-  packages: npm git
-  npm: npm yarn pnpm
+  packages: npm git jq
+  npm: npm yarn pnpm @adamburgess/nr
 node:lts:
   inputs:
     - common:latest
@@ -43,8 +43,8 @@ node:lts:
 node:lts-npm:
   inputs:
     - node:lts
-  packages: npm git
-  npm: npm yarn pnpm
+  packages: npm git jq
+  npm: npm yarn pnpm @adamburgess/nr
 jpegxl:latest:
   repos:
     - gitlab@wg1/jpeg-xl

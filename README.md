@@ -41,7 +41,8 @@ Base image: aburgess/gcc:latest
 Adds:
 * GDB
 * [CGreen (testing)](https://github.com/cgreen-devs/cgreen)
-* [fmt](https://github.com/fmtlib/fmt)
+* [fmt](https://github.com/fmtlib/fmt) 
+
 I will add stuff to this image when I don't want to recompile dependencies.
 
 ### [aburgess/node:latest and aburgess/node:lts](https://hub.docker.com/r/aburgess/node)
@@ -52,7 +53,8 @@ With the latest version of node and the LTS version, respectively.
 ### [aburgess/node:latest-npm and aburgess/node:lts-npm](https://hub.docker.com/r/aburgess/node)
 
 Base image: aburgess/node:latest or aburgess/note:lts  
-Includes the latest version of npm, yarn, and pnpm.
+Includes the latest version of npm, yarn, pnpm, and jq.  
+Also includes [@adamburges/nr](https://www.npmjs.com/package/@adamburgess/nr).  
 Generally you build on this image, then have a final stage on the other image.
 
 ### [aburgess/docker:latest](https://hub.docker.com/r/aburgess/docker)
