@@ -45,6 +45,14 @@ Adds:
 
 I will add stuff to this image when I don't want to recompile dependencies.
 
+### [aburgess/gcc:extra](https://hub.docker.com/r/aburgess/gcc)
+
+Base image: aburgess/gcc:extra
+
+Adds:
+* Rust
+* Cargo
+
 ### [aburgess/node:latest and aburgess/node:lts](https://hub.docker.com/r/aburgess/node)
 
 Base image: aburgess/common:latest  
