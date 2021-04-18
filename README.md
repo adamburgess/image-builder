@@ -45,7 +45,7 @@ Adds:
 
 I will add stuff to this image when I don't want to recompile dependencies.
 
-### [aburgess/gcc:extra](https://hub.docker.com/r/aburgess/gcc)
+### [aburgess/rust:extra](https://hub.docker.com/r/aburgess/rust)
 
 Base image: aburgess/gcc:extra
 
