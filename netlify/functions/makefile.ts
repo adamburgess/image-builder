@@ -81,7 +81,7 @@ function imageToTarget(image: string, repos: string[], dockers: string[], packag
     const targets = [repoTargets, dockerTargets, packageTargets, npmTargets, inputTargets, `dockerfile-${imageFile}`];
     const imageFileTarget = `image-${imageFile}: ${targets.filter(t => t.length !== 0).join(' ')}
 \t@echo [Image] ${image}
-\tcd ../dockerfiles && docker build -t aburgess/${image} -f ${imageFile}.Dockerfile .
+\tcd ../dockerfiles && docker buildx build --platform linux/amd64,linux/arm64 -t aburgess/${image} -f ${imageFile}.Dockerfile .
 \tdocker push aburgess/${image}
 \t@touch image-${imageFile}
 
