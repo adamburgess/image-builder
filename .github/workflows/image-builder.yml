@@ -4,7 +4,7 @@ on:
     paths-ignore:
       - 'netlify/**'
   schedule:
-    - cron: '30 21 * * *' # 9:30pm UTC, 7:30am AEST.
+    - cron: '30 21 * * 0' # 9:30pm UTC Sunday, 7:30am AEST Monday.
 jobs:
   build:
     runs-on: ubuntu-latest
