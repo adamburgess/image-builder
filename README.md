@@ -40,18 +40,10 @@ Base image: aburgess/gcc:latest
 
 Adds:
 * GDB
-* [CGreen (testing)](https://github.com/cgreen-devs/cgreen)
 * [fmt](https://github.com/fmtlib/fmt) 
+* [jsoncpp](https://github.com/open-source-parsers/jsoncpp.git) 
 
 I will add stuff to this image when I don't want to recompile dependencies.
-
-### [aburgess/rust:extra](https://hub.docker.com/r/aburgess/rust)
-
-Base image: aburgess/gcc:extra
-
-Adds:
-* Rust
-* Cargo
 
 ### [aburgess/node:latest and aburgess/node:lts](https://hub.docker.com/r/aburgess/node)
 
@@ -65,15 +57,12 @@ Includes the latest version of npm, yarn, pnpm, and jq.
 Also includes [@adamburges/nr](https://www.npmjs.com/package/@adamburgess/nr).  
 Generally you build on this image, then have a final stage on the other image.
 
-### [aburgess/docker:latest](https://hub.docker.com/r/aburgess/docker)
-
-Docker in docker. Not really used very often.
-
 ### [aburgess/binaries:*](https://hub.docker.com/r/aburgess/binaries)
 
 Since docker doesn't cache "ADD", I just store final binaries in these packages.
 
-### [aburgess/jpegxl](https://hub.docker.com/r/aburgess/jpegxl)
+### [aburgess/h2o:latest](https://hub.docker.com/r/aburgess/h2o)
 
-Base image: ubuntu  
-Builds the latest version of the [JPEG XL encoder/decoder](https://gitlab.com/wg1/jpeg-xl/) and provides them as /cjxl and /djxl.
+Base image: aburgess/common:latest
+
+The [h2o HTTP server](https://github.com/h2o/h2o)
