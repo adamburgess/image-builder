@@ -68,7 +68,7 @@ function imageToTarget(image: string, repos: string[], dockers: string[], packag
     const dockerTargets = dockers.map(d => 'docker-' + sanitise(d)).join(' ');
     const packageTargets = packages.map(p => 'package-' + sanitise(p)).join(' ');
     const npmTargets = npms.map(n => 'npm-' + sanitise(n)).join(' ');
-    const inputTargets = inputs.map(i => 'image-' + sanitise(i));
+    const inputTargets = inputs.map(i => 'image-' + sanitise(i)).join(' ');
     
     const imageFile = sanitise(image);
 
