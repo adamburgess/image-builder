@@ -40,3 +40,10 @@ node:lts-npm:
     - node:lts
   packages: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
+h2o:latest:
+  inputs:
+    - common:latest
+    - gcc:latest
+  packages: zlib-dev
+  repos:
+    - github@h2o/h2o
