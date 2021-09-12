@@ -11,10 +11,6 @@ common:extra:
   inputs:
     - common:latest
   packages: dpkg sudo git rsync openssh-client
-docker:latest:
-  packages: docker-cli docker-compose
-  inputs:
-    - common:latest 
 gcc:latest:
   inputs:
     - common:extra
@@ -24,13 +20,8 @@ gcc:extra:
     - gcc:latest
   packages: gdb sqlite-dev
   repos:
-    - github@cgreen-devs/cgreen
     - github@open-source-parsers/jsoncpp
-    - github@fmtlib/fmt@7.1.3
-rust:extra:
-  inputs:
-    - gcc:extra
-  packages: rust cargo rust-gdb
+    - github@fmtlib/fmt@8.0.1
 node:latest:
   inputs:
     - common:latest
@@ -49,8 +40,3 @@ node:lts-npm:
     - node:lts
   packages: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
-jpegxl:latest:
-  repos:
-    - gitlab@wg1/jpeg-xl
-  dockers:
-    - library/ubuntu
