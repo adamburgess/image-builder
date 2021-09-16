@@ -16,4 +16,5 @@ EXPOSE 80
 EXPOSE 443
 EXPOSE 2019
 
+RUN apk add --no-cache ca-certificates mailcap
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
