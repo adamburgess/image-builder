@@ -5,6 +5,9 @@ on:
       - 'netlify/**'
   schedule:
     - cron: '30 21 * * 0' # 9:30pm UTC Sunday, 7:30am AEST Monday.
+concurrency: 
+  group: builder
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
