@@ -47,3 +47,9 @@ h2o:latest:
   packages: zlib-dev
   repos:
     - github@h2o/h2o
+caddy:2-cloudflare:
+  dockers:
+    - alpine
+    - library/caddy@2-builder
+  repos:
+    - github@caddy-dns/cloudflare
