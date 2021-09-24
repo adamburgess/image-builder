@@ -1,21 +1,13 @@
-from ubuntu as build
+from alpine as builder
 
-run apt-get update
-env DEBIAN_FRONTEND="noninteractive"
-run apt-get install -y git \
-    cmake clang libgif-dev libjpeg-dev ninja-build libgoogle-perftools-dev \
-    extra-cmake-modules pkg-config libwebp-dev libpng-dev libopenexr-dev
-run git clone https://gitlab.com/wg1/jpeg-xl.git --recursive
-workdir /jpeg-xl
-run sed -i 's/-- all doc/-- cjxl djxl/' ci.sh
-run SKIP_TEST=1 ./ci.sh release
+run apk add git cmake build-base libjpeg-turbo-static libpng-static zlib-static
+run git clone https://github.com/libjxl/libjxl.git
+workdir /libjxl
+run git submodule update --init --recursive
+workdir /libjxl/build
+run cmake .. -DJPEGXL_STATIC=ON
+run make -j cjxl djxl
 
-from ubuntu
+from alpine
 
-run apt-get update && \
-    apt-get install -y libjpeg8 libgif7 libpng16-16 openexr libgoogle-perftools4 && \
-    rm -rf /var/lib/apt/lists/*
-
-copy --from=build /jpeg-xl/build/tools/cjxl /jpeg-xl/build/tools/djxl /
-
-run ldd /cjxl && ! (ldd cjxl | grep -q "not found")
+copy --from=builder /libjxl/build/tools/cjxl /libjxl/build/tools/djxl /

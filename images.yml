@@ -1,9 +1,9 @@
 binaries:mo:
   dockers:
-    - library/alpine@edge
+    - library/alpine@latest
 common:latest:
   dockers:
-    - library/alpine@edge
+    - library/alpine@latest
   inputs:
     - binaries:mo
   packages: bash curl wget tini htop nano libstdc++
@@ -40,16 +40,9 @@ node:lts-npm:
     - node:lts
   packages: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
-h2o:latest:
-  inputs:
-    - common:latest
-    - gcc:latest
-  packages: zlib-dev
-  repos:
-    - github@h2o/h2o
-caddy:2-cloudflare:
+jpegxl:latest:
   dockers:
-    - alpine
-    - library/caddy@2-builder
+    - library/alpine@latest
+  packages: git cmake build-base libjpeg-turbo-static libpng-static zlib-static
   repos:
-    - github@caddy-dns/cloudflare
+    - github@libjxl/libjxl

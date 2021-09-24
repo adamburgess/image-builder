@@ -61,8 +61,7 @@ Generally you build on this image, then have a final stage on the other image.
 
 Since docker doesn't cache "ADD", I just store final binaries in these packages.
 
-### [aburgess/h2o:latest](https://hub.docker.com/r/aburgess/h2o)
+### [aburgess/jpegxl](https://hub.docker.com/r/aburgess/jpegxl)
 
-Base image: aburgess/common:latest
-
-The [h2o HTTP server](https://github.com/h2o/h2o)
+Base image: alpine  
+Builds the latest version of the [JPEG XL encoder/decoder](https://github.com/libjxl/libjxl) and provides them as /cjxl and /djxl.  
