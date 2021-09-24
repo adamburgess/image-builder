@@ -45,4 +45,4 @@ jpegxl:latest:
     - library/alpine@latest
   packages: git cmake build-base libjpeg-turbo-static libpng-static zlib-static
   repos:
-    - github@libjxl/libjxl
+    - github@libjxl/libjxl@main
