@@ -6,7 +6,7 @@ run apk add --no-cache gdb sqlite-dev
 # JsonCpp, a ...
 run git clone --depth 1 https://github.com/open-source-parsers/jsoncpp.git && \
     cd jsoncpp && \
-    mkdir build && cd build && cmake -DBUILD_STATIC_LIBS=ON -DBUILD_SHARED_LIBS=OFF -DCMAKE_INSTALL_INCLUDEDIR=include/jsoncpp .. && \
+    mkdir build && cd build && cmake -DBUILD_STATIC_LIBS=ON -DBUILD_SHARED_LIBS=OFF -DJSONCPP_WITH_TESTS=OFF -DJSONCPP_WITH_POST_BUILD_UNITTEST=OFF -DCMAKE_INSTALL_INCLUDEDIR=include/jsoncpp .. && \
     make -j && make install && \
     cd ../.. && rm -rf jsoncpp
 
