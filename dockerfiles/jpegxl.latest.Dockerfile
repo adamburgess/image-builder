@@ -6,7 +6,7 @@ workdir /libjxl
 run git submodule update --init --recursive
 workdir /libjxl/build
 run cmake .. -DJPEGXL_STATIC=ON
-run make -j cjxl djxl
+run make -j$(($(nproc) + 1)) cjxl djxl
 
 from alpine
 
