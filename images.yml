@@ -40,9 +40,9 @@ node:lts-npm:
     - node:lts
   packages: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
-#jpegxl:latest:
-#  dockers:
-#    - library/alpine@latest
-#  packages: git cmake build-base libjpeg-turbo-static libpng-static zlib-static
-#  repos:
-#    - github@libjxl/libjxl@main
+jpegxl:latest:
+  dockers:
+    - library/alpine@latest
+  packages: git cmake build-base libjpeg-turbo-static libpng-static zlib-static
+  repos:
+    - github@libjxl/libjxl@main
