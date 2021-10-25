@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir -p builder
+curl --data-binary "@images.yml" https://adamburgess-image-builder.netlify.app/.netlify/functions/makefile > builder/Makefile
+cd builder && make all
+docker buildx prune -af
