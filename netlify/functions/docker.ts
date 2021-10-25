@@ -14,7 +14,7 @@ interface DockerTagResponse {
     last_updated: string
 }
 
-async function getDockerSha(input: string) {
+async function getDockerSha(input: string, architecture = 'amd64') {
     let [repo, tag] = input.split('@');
     if (tag === undefined) tag = 'latest';
 
@@ -22,16 +22,17 @@ async function getDockerSha(input: string) {
     if (response.status != 200) throw new Error('failed to get docker');
     const json = await response.json() as DockerTagResponse;
 
-    const amd64 = json.images.find(d => d.architecture === 'amd64');
-    if (amd64 !== undefined) return amd64.digest;
+    const arch = json.images.find(d => d.architecture === architecture);
+    if (arch !== undefined) return arch.digest;
 
-    // couldnt find amd64, so instead return last modified
+    // couldnt find arch, so instead return last modified
     return json.last_updated;
 }
 
 exports.handler = async function (event: HandlerEvent, context: any) {
     const docker = event.queryStringParameters.docker;
-    const sha = await getDockerSha(docker);
+    const arch = event.queryStringParameters.arch;
+    const sha = await getDockerSha(docker, arch);
     return {
         statusCode: 200,
         headers: {
