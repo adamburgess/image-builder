@@ -7,10 +7,8 @@
     "node-fetch": "^3.0.0",
     "yosay": "^2.0.2"
   },
-  "scripts": {
-    "build": "tsc"
-  },
   "devDependencies": {
+    "@netlify/functions": "^0.8.0",
     "@types/async-lock": "^1.1.2",
     "@types/js-yaml": "^4.0.0",
     "@types/node": "^16.11.6",

@@ -1,10 +1,5 @@
 import fetch from 'node-fetch'
-
-interface HandlerEvent {
-    queryStringParameters: {
-        [key: string]: string
-    }
-}
+import { HandlerEvent } from '@netlify/functions'
 
 async function getRepoSha(input: string) {
     let [hoster, repo, tag] = input.split('@');
@@ -32,8 +27,8 @@ async function getRepoSha(input: string) {
     return sha;
 }
 
-exports.handler = async function (event: HandlerEvent, context: any) {
-    const repo = event.queryStringParameters.repo;
+export async function handler(event: HandlerEvent) {
+    const repo = event.queryStringParameters!.repo!;
     const sha = await getRepoSha(repo);
     return {
         statusCode: 200,

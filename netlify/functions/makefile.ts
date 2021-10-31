@@ -1,11 +1,5 @@
 import Yaml from 'js-yaml'
-
-interface HandlerEvent {
-    queryStringParameters: {
-        [key: string]: string
-    }
-    body: string
-}
+import { HandlerEvent } from '@netlify/functions'
 
 interface ImagesYmlRaw {
     [key: string]: {
@@ -89,8 +83,8 @@ function imageToTarget(image: string, repos: string[], dockers: string[], packag
     return dockerfileTarget + imageFileTarget;
 }
 
-async function handler(event: HandlerEvent, context: any) {
-    const ymlText = event.body;
+export async function handler(event: HandlerEvent) {
+    const ymlText = event.body!;
     const yml = Yaml.load(ymlText) as ImagesYmlRaw;
 
     let makefile = '';
@@ -166,8 +160,5 @@ endef
         body: makefile
     };
 }
-
-
-exports.handler = handler;
 
 //handler({ body: require('fs').readFileSync('../images.yml', 'utf8'), queryStringParameters: {} }, undefined).then(x => require('fs').writeFileSync('../Makefile', x.body));

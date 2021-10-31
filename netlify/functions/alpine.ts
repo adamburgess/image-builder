@@ -1,5 +1,6 @@
 import AlpineApk from 'alpine-apk'
 import { Mutex } from 'async-mutex'
+import { HandlerEvent } from '@netlify/functions'
 
 const alpineApk = new AlpineApk();
 
@@ -24,14 +25,8 @@ async function getDependenciesForPackages(pkg: string) {
     return tree.split(',').filter(x => x).sort();
 }
 
-interface HandlerEvent {
-    queryStringParameters: {
-        [key: string]: string
-    }
-}
-
-exports.handler = async function (event: HandlerEvent, context: any) {
-    const pkg = event.queryStringParameters.package;
+export async function handler(event: HandlerEvent) {
+    const pkg = event.queryStringParameters!.package!;
     const dependencies = await getDependenciesForPackages(pkg);
     return {
         statusCode: 200,

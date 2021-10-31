@@ -1,10 +1,5 @@
 import fetch from 'node-fetch'
-
-interface HandlerEvent {
-    queryStringParameters: {
-        [key: string]: string
-    }
-}
+import { HandlerEvent } from '@netlify/functions'
 
 interface DockerTagResponse {
     images: {
@@ -29,9 +24,9 @@ async function getDockerSha(input: string, architecture = 'amd64') {
     return json.last_updated;
 }
 
-exports.handler = async function (event: HandlerEvent, context: any) {
-    const docker = event.queryStringParameters.docker;
-    const arch = event.queryStringParameters.arch;
+export async function handler(event: HandlerEvent) {
+    const docker = event.queryStringParameters!.docker!;
+    const arch = event.queryStringParameters!.arch!;
     const sha = await getDockerSha(docker, arch);
     return {
         statusCode: 200,
