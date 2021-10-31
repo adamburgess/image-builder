@@ -4,9 +4,9 @@
         "allowSyntheticDefaultImports": true,
         "strict": true,
         "moduleResolution": "node",
-        "module": "commonjs",
-        "target": "es2015",
-        "lib": ["es2019"],
+        "module": "es2022",
+        "target": "es2021",
+        "lib": ["es2021"],
     },
     "include": ["functions"]
 }
