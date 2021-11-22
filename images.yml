@@ -46,3 +46,6 @@ node:lts-npm:
 #  packages: git cmake build-base libjpeg-turbo-static libpng-static zlib-static
 #  repos:
 #    - github@libjxl/libjxl@main
+caddy:2-cloudflare:
+  dockers:
+    - library/caddy@2-builder
