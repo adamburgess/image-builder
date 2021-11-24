@@ -43,7 +43,7 @@ node:lts-npm:
 jpegxl:latest:
   dockers:
     - library/alpine@latest
-  packages: git cmake build-base libjpeg-turbo-static libpng-static zlib-static
+  packages: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev
   repos:
     - github@libjxl/libjxl@main
 caddy:2-cloudflare:
