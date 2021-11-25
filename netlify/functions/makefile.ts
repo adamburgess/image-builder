@@ -29,8 +29,8 @@ function alpineToTarget(pkg: string, version: string) {
     const s = sanitise(pkg);
     return `alpine-package-${version}-${s}: FORCE
 \t@echo [Alpine Package] ${pkg}
-\t@curl -s -G --data-urlencode "package=${pkg}" ${netlifyUrl}/alpine > alpine-package-${version}-${s}.tmp
-\t$(call replace_if_different,package-${s})
+\t@curl -s -G --data-urlencode "package=${pkg}" --data-urlencode "version=${version}" ${netlifyUrl}/alpine > alpine-package-${version}-${s}.tmp
+\t$(call replace_if_different,alpine-package-${version}-${s})
 
 `
 }
