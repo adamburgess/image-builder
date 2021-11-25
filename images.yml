@@ -3,44 +3,44 @@ binaries:mo:
     - library/alpine@latest
 common:latest:
   dockers:
-    - library/alpine@3.14
+    - library/alpine@3.15
   inputs:
     - binaries:mo
-  alpinepackages314: bash curl wget tini htop nano libstdc++
+  alpinepackages315: bash curl wget tini htop nano libstdc++
 common:extra:
   inputs:
     - common:latest
-  alpinepackages314: dpkg sudo git rsync openssh-client
+  alpinepackages315: dpkg sudo git rsync openssh-client
 gcc:latest:
   disabled: true
   inputs:
     - common:extra
-  alpinepackages314: build-base linux-headers openssl-dev cmake
+  alpinepackages315: build-base linux-headers openssl-dev cmake
 gcc:extra:
   disabled: true
   inputs:
     - gcc:latest
-  alpinepackages314: gdb sqlite-dev
+  alpinepackages315: gdb sqlite-dev
   repos:
     - github@open-source-parsers/jsoncpp
     - github@fmtlib/fmt@8.0.1
 node:latest:
   inputs:
     - common:latest
-  alpinepackages314: nodejs-current
+  alpinepackages315: nodejs-current
 node:latest-npm:
   inputs:
     - node:latest
-  alpinepackages314: npm git jq
+  alpinepackages315: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
 node:lts:
   inputs:
     - common:latest
-  alpinepackages314: nodejs
+  alpinepackages315: nodejs
 node:lts-npm:
   inputs:
     - node:lts
-  alpinepackages314: npm git jq
+  alpinepackages315: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
 jpegxl:latest:
   dockers:
