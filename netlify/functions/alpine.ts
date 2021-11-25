@@ -2,32 +2,30 @@ import AlpineApk from 'alpine-apk'
 import { Mutex } from 'async-mutex'
 import { HandlerEvent } from '@netlify/functions'
 
-const alpineApk = new AlpineApk();
-
-let updatedAlpine = false;
 const mutex = new Mutex();
+const alpines: Record<string, AlpineApk> = {};
 
-async function updatePackages() {
-    await mutex.acquire();
-    try {
-        if (!updatedAlpine) {
-            await alpineApk.update();
-            updatedAlpine = true;
-        }
-    } finally {
-        mutex.release();
-    }
+async function getAndUpdateAlpinePkgs(version: string) {
+    return mutex.runExclusive(async () => {
+        if (version in alpines) return alpines[version];
+
+        const alpineApk = new AlpineApk();
+        await alpineApk.update(version);
+        alpines[version] = alpineApk;
+        return alpineApk;
+    });
 }
 
-async function getDependenciesForPackages(pkg: string) {
-    await updatePackages();
+async function getDependenciesForPackages(pkg: string, version: string) {
+    const alpineApk = await getAndUpdateAlpinePkgs(version);
     let tree = alpineApk.getDependencyTree(pkg);
     return tree.split(',').filter(x => x).sort();
 }
 
 export async function handler(event: HandlerEvent) {
     const pkg = event.queryStringParameters!.package!;
-    const dependencies = await getDependenciesForPackages(pkg);
+    const version = event.queryStringParameters!.version ?? 'latest-stable';
+    const dependencies = await getDependenciesForPackages(pkg, version);
     return {
         statusCode: 200,
         headers: {

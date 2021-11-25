@@ -3,7 +3,9 @@ import { HandlerEvent } from '@netlify/functions'
 
 interface ImagesYmlRaw {
     [key: string]: {
-        packages: string | undefined
+        disabled: boolean | undefined
+        alpinepackages314: string | undefined
+        alpinepackages315: string | undefined
         inputs: string[] | undefined
         dockers: string[] | undefined
         repos: string[] | undefined
@@ -23,11 +25,11 @@ function dockerToTarget(docker: string) {
 `
 }
 
-function alpineToTarget(pkg: string) {
+function alpineToTarget(pkg: string, version: string) {
     const s = sanitise(pkg);
-    return `package-${s}: FORCE
+    return `alpine-package-${version}-${s}: FORCE
 \t@echo [Alpine Package] ${pkg}
-\t@curl -s -G --data-urlencode "package=${pkg}" ${netlifyUrl}/alpine > package-${s}.tmp
+\t@curl -s -G --data-urlencode "package=${pkg}" ${netlifyUrl}/alpine > alpine-package-${version}-${s}.tmp
 \t$(call replace_if_different,package-${s})
 
 `
@@ -57,13 +59,14 @@ function sanitise(name: string) {
     return name.replace(/:/g, '.').replace(/\//g, '_');
 }
 
-function imageToTarget(image: string, repos: string[], dockers: string[], packages: string[], npms: string[], inputs: string[]) {
+function imageToTarget(image: string, repos: string[], dockers: string[], packages314: string[], packages315: string[], npms: string[], inputs: string[]) {
     const repoTargets = repos.map(r => 'repo-' + sanitise(r)).join(' ');
     const dockerTargets = dockers.map(d => 'docker-' + sanitise(d)).join(' ');
-    const packageTargets = packages.map(p => 'package-' + sanitise(p)).join(' ');
+    const package314Targets = packages314.map(p => 'alpine-package-3.14-' + sanitise(p)).join(' ');
+    const package315Targets = packages315.map(p => 'alpine-package-3.15-' + sanitise(p)).join(' ');
     const npmTargets = npms.map(n => 'npm-' + sanitise(n)).join(' ');
     const inputTargets = inputs.map(i => 'image-' + sanitise(i)).join(' ');
-    
+
     const imageFile = sanitise(image);
 
     const dockerfileTarget = `dockerfile-${imageFile}: FORCE
@@ -72,7 +75,7 @@ function imageToTarget(image: string, repos: string[], dockers: string[], packag
 
 `;
 
-    const targets = [repoTargets, dockerTargets, packageTargets, npmTargets, inputTargets, `dockerfile-${imageFile}`];
+    const targets = [repoTargets, dockerTargets, package314Targets, package315Targets, npmTargets, inputTargets, `dockerfile-${imageFile}`];
     const imageFileTarget = `image-${imageFile}: ${targets.filter(t => t.length !== 0).join(' ')}
 \t@echo [Image] ${image}
 \tcd ../dockerfiles && docker buildx build --platform linux/amd64,linux/arm64 --push -t aburgess/${image} -f ${imageFile}.Dockerfile .
@@ -130,27 +133,30 @@ endef
     makefile += `all: ${Object.keys(yml).map(k => 'image-' + sanitise(k)).join(' ')}
 `;
 
-    const images = Object.entries(yml).map(e => ({
+    const images = Object.entries(yml).filter(([, e]) => !e.disabled).map(e => ({
         image: e[0],
         dockers: e[1].dockers ?? [],
         repos: e[1].repos ?? [],
-        packages: e[1].packages?.split(' ') ?? [],
+        alpinepackages314: e[1].alpinepackages314?.split(' ') ?? [],
+        alpinepackages315: e[1].alpinepackages315?.split(' ') ?? [],
         inputs: e[1].inputs ?? [],
         npm: e[1].npm?.split(' ') ?? []
     }));
 
     const dockers = Array.from(new Set(images.flatMap(image => image.dockers)));
     const repos = Array.from(new Set(images.flatMap(image => image.repos)));
-    const packages = Array.from(new Set(images.flatMap(image => image.packages)));
+    const alpinepackages314 = Array.from(new Set(images.flatMap(image => image.alpinepackages314)));
+    const alpinepackages315 = Array.from(new Set(images.flatMap(image => image.alpinepackages315)));
     const npms = Array.from(new Set(images.flatMap(image => image.npm)));
 
     // create the targets
     dockers.forEach(d => makefile += dockerToTarget(d));
     repos.forEach(d => makefile += repoToTarget(d));
-    packages.forEach(d => makefile += alpineToTarget(d));
+    alpinepackages314.forEach(d => makefile += alpineToTarget(d, '3.14'));
+    alpinepackages315.forEach(d => makefile += alpineToTarget(d, '3.15'));
     npms.forEach(d => makefile += npmToTarget(d));
 
-    images.forEach(i => makefile += imageToTarget(i.image, i.repos, i.dockers, i.packages, i.npm, i.inputs));
+    images.forEach(i => makefile += imageToTarget(i.image, i.repos, i.dockers, i.alpinepackages314, i.alpinepackages315, i.npm, i.inputs));
 
     return {
         statusCode: 200,
