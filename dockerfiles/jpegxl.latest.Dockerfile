@@ -1,4 +1,4 @@
-from alpine as builder
+from alpine:3.14 as builder
 
 run apk add git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev
 run git clone https://github.com/libjxl/libjxl.git
@@ -8,6 +8,6 @@ workdir /libjxl/build
 run cmake .. -DJPEGXL_STATIC=ON
 run make -j$(($(nproc) + 1)) cjxl djxl
 
-from alpine
+from alpine:3.14
 
 copy --from=builder /libjxl/build/tools/cjxl /libjxl/build/tools/djxl /

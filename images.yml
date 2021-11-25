@@ -3,47 +3,49 @@ binaries:mo:
     - library/alpine@latest
 common:latest:
   dockers:
-    - library/alpine@latest
+    - library/alpine@3.14
   inputs:
     - binaries:mo
-  packages: bash curl wget tini htop nano libstdc++
+  alpinepackages314: bash curl wget tini htop nano libstdc++
 common:extra:
   inputs:
     - common:latest
-  packages: dpkg sudo git rsync openssh-client
+  alpinepackages314: dpkg sudo git rsync openssh-client
 gcc:latest:
+  disabled: true
   inputs:
     - common:extra
-  packages: build-base linux-headers openssl-dev cmake
+  alpinepackages314: build-base linux-headers openssl-dev cmake
 gcc:extra:
+  disabled: true
   inputs:
     - gcc:latest
-  packages: gdb sqlite-dev
+  alpinepackages314: gdb sqlite-dev
   repos:
     - github@open-source-parsers/jsoncpp
     - github@fmtlib/fmt@8.0.1
 node:latest:
   inputs:
     - common:latest
-  packages: nodejs-current
+  alpinepackages314: nodejs-current
 node:latest-npm:
   inputs:
     - node:latest
-  packages: npm git jq
+  alpinepackages314: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
 node:lts:
   inputs:
     - common:latest
-  packages: nodejs
+  alpinepackages314: nodejs
 node:lts-npm:
   inputs:
     - node:lts
-  packages: npm git jq
+  alpinepackages314: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
 jpegxl:latest:
   dockers:
-    - library/alpine@latest
-  packages: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev
+    - library/alpine@3.14
+  alpinepackages314: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev
   repos:
     - github@libjxl/libjxl@main
 caddy:2-cloudflare:
