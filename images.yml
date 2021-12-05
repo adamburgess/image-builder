@@ -45,6 +45,7 @@ node:lts-npm:
 caddy:2:
   dockers:
     - library/caddy@2-builder
+    - library/caddy@2
 jpegxl:latest:
   dockers:
     - library/alpine@3.14
