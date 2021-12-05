@@ -1,8 +1,8 @@
 FROM caddy:2-builder AS builder
 
-# 16/09/2021
 RUN xcaddy build \
-    --with github.com/caddy-dns/cloudflare@91cf700 
+    --with github.com/caddy-dns/cloudflare@91cf700 \
+    --with github.com/mholt/caddy-l4@31d74d3
 
 FROM scratch
 
