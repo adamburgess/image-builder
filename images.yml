@@ -42,12 +42,12 @@ node:lts-npm:
     - node:lts
   alpinepackages315: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
+caddy:2:
+  dockers:
+    - library/caddy@2-builder
 jpegxl:latest:
   dockers:
     - library/alpine@3.14
   alpinepackages314: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev
   repos:
     - github@libjxl/libjxl@main
-caddy:2:
-  dockers:
-    - library/caddy@2-builder
