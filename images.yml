@@ -49,6 +49,6 @@ caddy:2:
 jpegxl:latest:
   dockers:
     - library/alpine@3.15
-  alpinepackages314: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev
+  alpinepackages315: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev
   repos:
     - github@libjxl/libjxl@main
