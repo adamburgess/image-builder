@@ -1,5 +1,5 @@
 from aburgess/binaries:mo as mo
-from alpine:3.15
+from alpine:3.16
 
 run apk add --no-cache bash curl wget tini htop nano libstdc++
 
