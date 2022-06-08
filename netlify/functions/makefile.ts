@@ -6,6 +6,7 @@ interface ImagesYmlRaw {
         disabled: boolean | undefined
         alpinepackages314: string | undefined
         alpinepackages315: string | undefined
+        alpinepackages316: string | undefined
         inputs: string[] | undefined
         dockers: string[] | undefined
         repos: string[] | undefined
@@ -59,11 +60,12 @@ function sanitise(name: string) {
     return name.replace(/:/g, '.').replace(/\//g, '_');
 }
 
-function imageToTarget(image: string, repos: string[], dockers: string[], packages314: string[], packages315: string[], npms: string[], inputs: string[]) {
+function imageToTarget(image: string, repos: string[], dockers: string[], packages314: string[], packages315: string[], packages316: string[], npms: string[], inputs: string[]) {
     const repoTargets = repos.map(r => 'repo-' + sanitise(r)).join(' ');
     const dockerTargets = dockers.map(d => 'docker-' + sanitise(d)).join(' ');
     const package314Targets = packages314.map(p => 'alpine-package-3.14-' + sanitise(p)).join(' ');
     const package315Targets = packages315.map(p => 'alpine-package-3.15-' + sanitise(p)).join(' ');
+    const package316Targets = packages316.map(p => 'alpine-package-3.15-' + sanitise(p)).join(' ');
     const npmTargets = npms.map(n => 'npm-' + sanitise(n)).join(' ');
     const inputTargets = inputs.map(i => 'image-' + sanitise(i)).join(' ');
 
@@ -139,6 +141,7 @@ endef
         repos: e[1].repos ?? [],
         alpinepackages314: e[1].alpinepackages314?.split(' ') ?? [],
         alpinepackages315: e[1].alpinepackages315?.split(' ') ?? [],
+        alpinepackages316: e[1].alpinepackages316?.split(' ') ?? [],
         inputs: e[1].inputs ?? [],
         npm: e[1].npm?.split(' ') ?? []
     }));
@@ -147,6 +150,7 @@ endef
     const repos = Array.from(new Set(images.flatMap(image => image.repos)));
     const alpinepackages314 = Array.from(new Set(images.flatMap(image => image.alpinepackages314)));
     const alpinepackages315 = Array.from(new Set(images.flatMap(image => image.alpinepackages315)));
+    const alpinepackages316 = Array.from(new Set(images.flatMap(image => image.alpinepackages316)));
     const npms = Array.from(new Set(images.flatMap(image => image.npm)));
 
     // create the targets
@@ -154,9 +158,10 @@ endef
     repos.forEach(d => makefile += repoToTarget(d));
     alpinepackages314.forEach(d => makefile += alpineToTarget(d, '3.14'));
     alpinepackages315.forEach(d => makefile += alpineToTarget(d, '3.15'));
+    alpinepackages316.forEach(d => makefile += alpineToTarget(d, '3.16'));
     npms.forEach(d => makefile += npmToTarget(d));
 
-    images.forEach(i => makefile += imageToTarget(i.image, i.repos, i.dockers, i.alpinepackages314, i.alpinepackages315, i.npm, i.inputs));
+    images.forEach(i => makefile += imageToTarget(i.image, i.repos, i.dockers, i.alpinepackages314, i.alpinepackages315, i.alpinepackages316, i.npm, i.inputs));
 
     return {
         statusCode: 200,
