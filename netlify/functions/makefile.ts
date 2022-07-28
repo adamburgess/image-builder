@@ -65,7 +65,7 @@ function imageToTarget(image: string, repos: string[], dockers: string[], packag
     const dockerTargets = dockers.map(d => 'docker-' + sanitise(d)).join(' ');
     const package314Targets = packages314.map(p => 'alpine-package-3.14-' + sanitise(p)).join(' ');
     const package315Targets = packages315.map(p => 'alpine-package-3.15-' + sanitise(p)).join(' ');
-    const package316Targets = packages316.map(p => 'alpine-package-3.15-' + sanitise(p)).join(' ');
+    const package316Targets = packages316.map(p => 'alpine-package-3.16-' + sanitise(p)).join(' ');
     const npmTargets = npms.map(n => 'npm-' + sanitise(n)).join(' ');
     const inputTargets = inputs.map(i => 'image-' + sanitise(i)).join(' ');
 
@@ -77,7 +77,7 @@ function imageToTarget(image: string, repos: string[], dockers: string[], packag
 
 `;
 
-    const targets = [repoTargets, dockerTargets, package314Targets, package315Targets, npmTargets, inputTargets, `dockerfile-${imageFile}`];
+    const targets = [repoTargets, dockerTargets, package314Targets, package315Targets, package316Targets, npmTargets, inputTargets, `dockerfile-${imageFile}`];
     const imageFileTarget = `image-${imageFile}: ${targets.filter(t => t.length !== 0).join(' ')}
 \t@echo [Image] ${image}
 \tcd ../dockerfiles && docker buildx build --platform linux/amd64,linux/arm64 --push -t aburgess/${image} -f ${imageFile}.Dockerfile .
