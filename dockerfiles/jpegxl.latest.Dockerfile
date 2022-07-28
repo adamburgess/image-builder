@@ -1,6 +1,6 @@
 from alpine:3.16 as builder
 
-run apk add git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev gflags-dev
+run apk add git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev gflags-dev linux-headers
 run git clone https://github.com/libjxl/libjxl.git
 workdir /libjxl
 run git submodule update --init --recursive
