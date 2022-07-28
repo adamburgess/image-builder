@@ -131,11 +131,13 @@ endef
 
 `;
 
+    const inputs = Object.entries(yml).filter(([, e]) => !e.disabled);
+
     // create the all target
-    makefile += `all: ${Object.keys(yml).map(k => 'image-' + sanitise(k)).join(' ')}
+    makefile += `all: ${inputs.map(x => x[0]).map(k => 'image-' + sanitise(k)).join(' ')}
 `;
 
-    const images = Object.entries(yml).filter(([, e]) => !e.disabled).map(e => ({
+    const images = inputs.map(e => ({
         image: e[0],
         dockers: e[1].dockers ?? [],
         repos: e[1].repos ?? [],
