@@ -24,22 +24,22 @@ gcc:extra:
   repos:
     - github@open-source-parsers/jsoncpp
     - github@fmtlib/fmt@8.0.1
-node:latest:
+node:18:
   inputs:
     - common:latest
   alpinepackages316: nodejs-current
-node:latest-npm:
+node:18-npm:
   inputs:
-    - node:latest
+    - node:18
   alpinepackages316: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
-node:lts:
+node:16:
   inputs:
     - common:latest
   alpinepackages316: nodejs
-node:lts-npm:
+node:16-npm:
   inputs:
-    - node:lts
+    - node:16
   alpinepackages316: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
 caddy:2:
