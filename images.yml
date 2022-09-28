@@ -52,3 +52,10 @@ jpegxl:latest:
   alpinepackages316: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev gflags-dev linux-headers
   repos:
     - github@libjxl/libjxl@main
+syncplay:latest:
+  inputs:
+    - common:latest
+    - common:extra
+  alpinepackages316: python3 build-base py3-pip python3-dev libffi-dev libffi
+  repos:
+    - github@Syncplay/syncplay@1.7.0-Beta1
