@@ -14,4 +14,5 @@ copy --from=build /syncplay/environment/ /syncplay/environment/
 copy --from=build /syncplay/syncplayServer.py /syncplay/
 copy --from=build /syncplay/syncplay/ /syncplay/syncplay/
 
-env PATH=/syncplay/environment:$PATH
+env PATH=/syncplay/environment/bin:$PATH
+entrypoint ["python3", "syncplayServer.py"]
