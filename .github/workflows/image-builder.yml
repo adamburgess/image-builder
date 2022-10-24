@@ -12,14 +12,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v2
         with:
           platforms: arm64
       - name: Set up Docker Buildx
         id: buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v2
         with:
           config-inline: |
             [worker.oci]
@@ -34,7 +34,7 @@ jobs:
       - name: login to docker
         run: 'docker login -u aburgess -p ${{ secrets.DOCKERHUB_PASSWORD }}'
       - name: restore Makefile cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: builder
           key: ${{ hashFiles('version.yml') }}-${{ github.sha }}-${{ github.run_id }}
