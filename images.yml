@@ -1,11 +1,6 @@
-binaries:mo:
-  dockers:
-    - library/alpine@latest
 common:latest:
   dockers:
     - library/alpine@3.16
-  inputs:
-    - binaries:mo
   alpinepackages316: bash curl wget tini htop nano libstdc++
 common:extra:
   inputs:
