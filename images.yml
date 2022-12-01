@@ -44,6 +44,8 @@ node:18-npm:
     3.17: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
 bun:latest:
+  dockers:
+    - ubuntu:22.04
   inputs:
     - common:latest
 caddy:2:
