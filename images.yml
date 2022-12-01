@@ -1,56 +1,66 @@
 common:latest:
   dockers:
     - library/alpine@3.16
-  alpinepackages316: bash curl wget tini htop nano libstdc++
+  alpine:
+    3.16: bash curl wget tini htop nano libstdc++
 common:extra:
   inputs:
     - common:latest
-  alpinepackages316: dpkg sudo git rsync openssh-client
+  alpine:
+    3.16: dpkg sudo git rsync openssh-client
 gcc:latest:
   disabled: true
   inputs:
     - common:extra
-  alpinepackages316: build-base linux-headers openssl-dev cmake
+  alpine:
+    3.16: build-base linux-headers openssl-dev cmake
 gcc:extra:
   disabled: true
   inputs:
     - gcc:latest
-  alpinepackages316: gdb sqlite-dev
+  alpine:
+    3.16: gdb sqlite-dev
   repos:
     - github@open-source-parsers/jsoncpp
     - github@fmtlib/fmt@8.0.1
 node:18:
   inputs:
     - common:latest
-  alpinepackages316: nodejs-current
+  alpine:
+    3.16: nodejs-current
 node:18-npm:
   inputs:
     - node:18
-  alpinepackages316: npm git jq
+  alpine:
+    3.16: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
 node:16:
   inputs:
     - common:latest
-  alpinepackages316: nodejs
+  alpine:
+    3.16: nodejs
 node:16-npm:
   inputs:
     - node:16
-  alpinepackages316: npm git jq
+  alpine:
+    3.16: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
 caddy:2:
   dockers:
     - library/caddy@2-builder
     - library/caddy@2
-syncplay:latest:
-  inputs:
-    - common:latest
-    - common:extra
-  alpinepackages316: python3 build-base py3-pip python3-dev libffi-dev libffi
-  repos:
-    - github@Syncplay/syncplay@1.7.0-Beta1
-jpegxl:latest:
-  dockers:
-    - library/alpine@3.16
-  alpinepackages316: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev gflags-dev linux-headers
-  repos:
-    - github@libjxl/libjxl@main
+#syncplay:latest:
+#  inputs:
+#    - common:latest
+#    - common:extra
+#  alpine:
+#    3.16: python3 build-base py3-pip python3-dev libffi-dev libffi
+#  repos:
+#    - github@Syncplay/syncplay@1.7.0-Beta1
+#jpegxl:latest:
+#  dockers:
+#    - library/alpine@3.16
+#  alpine:
+#    3.16: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev gflags-dev linux-headers
+#  repos:
+#    - github@libjxl/libjxl@main
