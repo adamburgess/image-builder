@@ -3,15 +3,23 @@ import { HandlerEvent } from '@netlify/functions'
 
 interface ImagesYmlRaw {
     [key: string]: {
-        disabled: boolean | undefined
-        alpinepackages314: string | undefined
-        alpinepackages315: string | undefined
-        alpinepackages316: string | undefined
-        inputs: string[] | undefined
-        dockers: string[] | undefined
-        repos: string[] | undefined
-        npm: string | undefined
+        disabled?: boolean
+        alpine?: {
+            [version: string]: string
+        }
+        inputs?: string[]
+        dockers?: string[]
+        repos?: string[]
+        npm?: string
     }
+}
+interface Image {
+    image: string
+    alpine: [version: string, pkgs: string[]][]
+    inputs: string[]
+    dockers: string[]
+    repos: string[]
+    npm: string[]
 }
 
 const netlifyUrl = `https://adamburgess-image-builder.netlify.app/.netlify/functions`;
@@ -60,13 +68,16 @@ function sanitise(name: string) {
     return name.replace(/:/g, '.').replace(/\//g, '_');
 }
 
-function imageToTarget(image: string, repos: string[], dockers: string[], packages314: string[], packages315: string[], packages316: string[], npms: string[], inputs: string[]) {
+function imageToTarget(i: Image) {
+    const {image, repos, dockers, alpine, npm, inputs} = i;
     const repoTargets = repos.map(r => 'repo-' + sanitise(r)).join(' ');
     const dockerTargets = dockers.map(d => 'docker-' + sanitise(d)).join(' ');
-    const package314Targets = packages314.map(p => 'alpine-package-3.14-' + sanitise(p)).join(' ');
-    const package315Targets = packages315.map(p => 'alpine-package-3.15-' + sanitise(p)).join(' ');
-    const package316Targets = packages316.map(p => 'alpine-package-3.16-' + sanitise(p)).join(' ');
-    const npmTargets = npms.map(n => 'npm-' + sanitise(n)).join(' ');
+    const alpineTargetsA: string[] = [];
+    for(const [version, pkgs] of alpine) {
+        alpineTargetsA.push(...pkgs.map(p => `alpine-package-${version}-${sanitise(p)}`));
+    }
+    const alpineTargets = alpineTargetsA.join(' ');
+    const npmTargets = npm.map(n => 'npm-' + sanitise(n)).join(' ');
     const inputTargets = inputs.map(i => 'image-' + sanitise(i)).join(' ');
 
     const imageFile = sanitise(image);
@@ -77,7 +88,7 @@ function imageToTarget(image: string, repos: string[], dockers: string[], packag
 
 `;
 
-    const targets = [repoTargets, dockerTargets, package314Targets, package315Targets, package316Targets, npmTargets, inputTargets, `dockerfile-${imageFile}`];
+    const targets = [repoTargets, dockerTargets, alpineTargets, npmTargets, inputTargets, `dockerfile-${imageFile}`];
     const imageFileTarget = `image-${imageFile}: ${targets.filter(t => t.length !== 0).join(' ')}
 \t@echo [Image] ${image}
 \tcd ../dockerfiles && docker buildx build --platform linux/amd64,linux/arm64 --push -t aburgess/${image} -f ${imageFile}.Dockerfile .
@@ -137,33 +148,33 @@ endef
     makefile += `all: ${inputs.map(x => x[0]).map(k => 'image-' + sanitise(k)).join(' ')}
 `;
 
-    const images = inputs.map(e => ({
-        image: e[0],
-        dockers: e[1].dockers ?? [],
-        repos: e[1].repos ?? [],
-        alpinepackages314: e[1].alpinepackages314?.split(' ') ?? [],
-        alpinepackages315: e[1].alpinepackages315?.split(' ') ?? [],
-        alpinepackages316: e[1].alpinepackages316?.split(' ') ?? [],
-        inputs: e[1].inputs ?? [],
-        npm: e[1].npm?.split(' ') ?? []
-    }));
+    const images = inputs.map(([key, opt]) => ({
+        image: key,
+        dockers: opt.dockers ?? [],
+        repos: opt.repos ?? [],
+        alpine: Object.entries(opt.alpine ?? {}).map(([version, pkgs]) => [version, pkgs.split(' ')]),
+        inputs: opt.inputs ?? [],
+        npm: opt.npm?.split(' ') ?? []
+    }) as Image);
 
     const dockers = Array.from(new Set(images.flatMap(image => image.dockers)));
     const repos = Array.from(new Set(images.flatMap(image => image.repos)));
-    const alpinepackages314 = Array.from(new Set(images.flatMap(image => image.alpinepackages314)));
-    const alpinepackages315 = Array.from(new Set(images.flatMap(image => image.alpinepackages315)));
-    const alpinepackages316 = Array.from(new Set(images.flatMap(image => image.alpinepackages316)));
+    const alpine: Record<string, string[]> = {};
+    for (const image of images) for (const [version, pkgs] of image.alpine) {
+        if (alpine[version]) alpine[version].push(...pkgs);
+        else alpine[version] = pkgs;
+    }
     const npms = Array.from(new Set(images.flatMap(image => image.npm)));
 
     // create the targets
     dockers.forEach(d => makefile += dockerToTarget(d));
     repos.forEach(d => makefile += repoToTarget(d));
-    alpinepackages314.forEach(d => makefile += alpineToTarget(d, '3.14'));
-    alpinepackages315.forEach(d => makefile += alpineToTarget(d, '3.15'));
-    alpinepackages316.forEach(d => makefile += alpineToTarget(d, '3.16'));
+    for (const version in alpine) {
+        alpine[version].forEach(d => makefile += alpineToTarget(d, version));
+    }
     npms.forEach(d => makefile += npmToTarget(d));
 
-    images.forEach(i => makefile += imageToTarget(i.image, i.repos, i.dockers, i.alpinepackages314, i.alpinepackages315, i.alpinepackages316, i.npm, i.inputs));
+    images.forEach(i => makefile += imageToTarget(i));
 
     return {
         statusCode: 200,
