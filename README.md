@@ -2,11 +2,10 @@ Common base images I use.
 
 ### [aburgess/common:latest](https://hub.docker.com/r/aburgess/latest)
 
-Alpine, but with:
+Alpine 3.17, but with:
 * bash (as entrypoint)
 * curl
 * htop
-* tini (init)
 * nano
 * libstdc++
 
@@ -45,21 +44,17 @@ Adds:
 
 I will add stuff to this image when I don't want to recompile dependencies.
 
-### [aburgess/node:latest and aburgess/node:lts](https://hub.docker.com/r/aburgess/node)
+### [aburgess/node:18 and aburgess/node:19](https://hub.docker.com/r/aburgess/node)
 
 Base image: aburgess/common:latest  
-With the latest version of node and the LTS version, respectively.
+Versions 18 and 19 of node.
 
-### [aburgess/node:latest-npm and aburgess/node:lts-npm](https://hub.docker.com/r/aburgess/node)
+### [aburgess/node:18-npm and aburgess/node:19-npm](https://hub.docker.com/r/aburgess/node)
 
-Base image: aburgess/node:latest or aburgess/note:lts  
+Base image: aburgess/18:latest or aburgess/node:19  
 Includes the latest version of npm, yarn, pnpm, and jq.  
 Also includes [@adamburges/nr](https://www.npmjs.com/package/@adamburgess/nr).  
 Generally you build on this image, then have a final stage on the other image.
-
-### [aburgess/binaries:*](https://hub.docker.com/r/aburgess/binaries)
-
-Since docker doesn't cache "ADD", I just store final binaries in these packages.
 
 ### [aburgess/jpegxl](https://hub.docker.com/r/aburgess/jpegxl)
 
