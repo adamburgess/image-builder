@@ -1,3 +1,3 @@
 from aburgess/common
 
-run apk add --no-cache nodejs-current && [[ `node --version` == v18.* ]]
+run apk add --no-cache nodejs && [[ `node --version` == v18.* ]]
