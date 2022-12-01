@@ -43,6 +43,9 @@ node:18-npm:
   alpine:
     3.17: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
+bun:latest:
+  inputs:
+    - common:latest
 caddy:2:
   dockers:
     - library/caddy@2-builder
