@@ -164,6 +164,9 @@ endef
         if (alpine[version]) alpine[version].push(...pkgs);
         else alpine[version] = pkgs;
     }
+    for(const version in alpine) {
+        alpine[version] = [...new Set(alpine[version])];
+    }
     const npms = Array.from(new Set(images.flatMap(image => image.npm)));
 
     // create the targets
