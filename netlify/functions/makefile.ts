@@ -1,5 +1,6 @@
 import Yaml from 'js-yaml'
 import { HandlerEvent } from '@netlify/functions'
+import from from '@adamburgess/linq'
 
 interface ImagesYmlRaw {
     [key: string]: {
@@ -72,11 +73,7 @@ function imageToTarget(i: Image) {
     const {image, repos, dockers, alpine, npm, inputs} = i;
     const repoTargets = repos.map(r => 'repo-' + sanitise(r)).join(' ');
     const dockerTargets = dockers.map(d => 'docker-' + sanitise(d)).join(' ');
-    const alpineTargetsA: string[] = [];
-    for(const [version, pkgs] of alpine) {
-        alpineTargetsA.push(...pkgs.map(p => `alpine-package-${version}-${sanitise(p)}`));
-    }
-    const alpineTargets = alpineTargetsA.join(' ');
+    const alpineTargets = alpine.map(([version, pkgs]) => pkgs.map(p => `alpine-package-${version}-${sanitise(p)}`)).join(' ');
     const npmTargets = npm.map(n => 'npm-' + sanitise(n)).join(' ');
     const inputTargets = inputs.map(i => 'image-' + sanitise(i)).join(' ');
 
@@ -157,24 +154,16 @@ endef
         npm: opt.npm?.split(' ') ?? []
     }) as Image);
 
-    const dockers = Array.from(new Set(images.flatMap(image => image.dockers)));
-    const repos = Array.from(new Set(images.flatMap(image => image.repos)));
-    const alpine: Record<string, string[]> = {};
-    for (const image of images) for (const [version, pkgs] of image.alpine) {
-        if (alpine[version]) alpine[version].push(...pkgs);
-        else alpine[version] = pkgs;
-    }
-    for(const version in alpine) {
-        alpine[version] = [...new Set(alpine[version])];
-    }
-    const npms = Array.from(new Set(images.flatMap(image => image.npm)));
+    const dockers = from(images).map(image => image.dockers).flat().distinct().toArray();
+    const repos = from(images).map(image => image.repos).flat().distinct().toArray();
+    // take the list of alpines then group each by their version and combine all groups.
+    const alpine = from(images).map(image => image.alpine).flat().groupBy(x => x[0], x => x[1]).toObject(x => x.key, x => x.flat().distinct().toArray());
+    const npms = from(images).map(image => image.npm).flat().distinct().toArray();
 
     // create the targets
     dockers.forEach(d => makefile += dockerToTarget(d));
     repos.forEach(d => makefile += repoToTarget(d));
-    for (const version in alpine) {
-        alpine[version].forEach(d => makefile += alpineToTarget(d, version));
-    }
+    Object.entries(alpine).forEach(([version, pkgs]) => pkgs.forEach(d => makefile += alpineToTarget(d, version)));
     npms.forEach(d => makefile += npmToTarget(d));
 
     images.forEach(i => makefile += imageToTarget(i));
