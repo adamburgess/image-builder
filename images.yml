@@ -8,21 +8,19 @@ common:extra:
     - common:latest
   alpine:
     3.17: dpkg sudo git rsync openssh-client
-# gcc:latest:
-#   disabled: true
-#   inputs:
-#     - common:extra
-#   alpine:
-#     3.16: build-base linux-headers openssl-dev cmake
-# gcc:extra:
-#   disabled: true
-#   inputs:
-#     - gcc:latest
-#   alpine:
-#     3.16: gdb sqlite-dev
-#   repos:
-#     - github@open-source-parsers/jsoncpp
-#     - github@fmtlib/fmt@8.0.1
+gcc:latest:
+  inputs:
+    - common:extra
+  alpine:
+    3.17: build-base linux-headers openssl-dev cmake
+gcc:extra:
+  inputs:
+    - gcc:latest
+  alpine:
+    3.17: gdb sqlite-dev
+#  repos:
+#    - github@open-source-parsers/jsoncpp
+#    - github@fmtlib/fmt@8.0.1
 node:19:
   inputs:
     - common:latest
