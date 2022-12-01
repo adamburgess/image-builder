@@ -73,7 +73,7 @@ function imageToTarget(i: Image) {
     const {image, repos, dockers, alpine, npm, inputs} = i;
     const repoTargets = repos.map(r => 'repo-' + sanitise(r)).join(' ');
     const dockerTargets = dockers.map(d => 'docker-' + sanitise(d)).join(' ');
-    const alpineTargets = alpine.map(([version, pkgs]) => pkgs.map(p => `alpine-package-${version}-${sanitise(p)}`)).join(' ');
+    const alpineTargets = alpine.flatMap(([version, pkgs]) => pkgs.map(p => `alpine-package-${version}-${sanitise(p)}`)).join(' ');
     const npmTargets = npm.map(n => 'npm-' + sanitise(n)).join(' ');
     const inputTargets = inputs.map(i => 'image-' + sanitise(i)).join(' ');
 
