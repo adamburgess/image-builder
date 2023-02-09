@@ -13,14 +13,17 @@ gcc:latest:
     - common:extra
   alpine:
     3.17: build-base linux-headers openssl-dev cmake
+rust:nightly:
+  inputs:
+    - gcc:latest
+  alpine:
+    3.17: rustup
+  rust: nightly
 gcc:extra:
   inputs:
     - gcc:latest
   alpine:
     3.17: gdb sqlite-dev
-#  repos:
-#    - github@open-source-parsers/jsoncpp
-#    - github@fmtlib/fmt@8.0.1
 node:19:
   inputs:
     - common:latest
