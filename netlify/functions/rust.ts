@@ -10,8 +10,6 @@ async function getRustVersion(channel: string) {
     return toml.pkg.rust.version;
 }
 
-console.log(await getRustVersion('nightly'));
-
 export async function handler(event: HandlerEvent) {
     const channel = event.queryStringParameters!.channel!;
     const latestVersion = await getRustVersion(channel);
