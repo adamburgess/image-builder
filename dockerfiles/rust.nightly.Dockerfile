@@ -5,3 +5,4 @@ run apk add --no-cache rustup && \
     rustup-init --default-toolchain nightly --profile minimal -y && \
     . ~/.cargo/env && \
     cargo new dummy && cd dummy && cargo add empty && cd .. && rm -rf dummy
+ENV PATH="/root/.cargo/bin:$PATH"
