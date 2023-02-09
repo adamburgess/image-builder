@@ -1,16 +1,18 @@
 {
   "private": true,
+  "type": "module",
   "dependencies": {
     "@adamburgess/linq": "^3.0.0",
+    "@iarna/toml": "^2.2.5",
     "alpine-apk": "^1.1.0",
     "async-mutex": "^0.4.0",
     "js-yaml": "^4.1.0",
     "node-fetch": "^3.3.0",
-    "toml": "^3.0.0",
     "yosay": "^2.0.2"
   },
   "devDependencies": {
     "@netlify/functions": "^1.4.0",
+    "@types/iarna__toml": "^2.0.2",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^18.13.0",
     "typescript": "^4.9.5"

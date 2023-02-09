@@ -1,14 +1,16 @@
 import fetch from 'node-fetch'
 import { HandlerEvent } from '@netlify/functions'
-import Toml from 'toml'
+import Toml from '@iarna/toml'
 
 async function getRustVersion(channel: string) {
     const url = `https://static.rust-lang.org/dist/channel-rust-${channel}.toml`;
     const res = await fetch(url);
     const txt = await res.text();
-    const toml = Toml.parse(txt);
-    return toml['pkg.rust'].version;
+    const toml = Toml.parse(txt) as any;
+    return toml.pkg.rust.version;
 }
+
+console.log(await getRustVersion('nightly'));
 
 export async function handler(event: HandlerEvent) {
     const channel = event.queryStringParameters!.channel!;
