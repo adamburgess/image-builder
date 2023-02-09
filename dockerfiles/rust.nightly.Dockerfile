@@ -4,5 +4,5 @@ from aburgess/gcc
 run apk add --no-cache rustup && \
     rustup-init --default-toolchain nightly --profile minimal -y && \
     . ~/.cargo/env && \
-    cargo new dummy && cd dummy && cargo add empty && cd .. && rm -rf dummy
+    cargo search --limit 0
 ENV PATH="/root/.cargo/bin:$PATH"
