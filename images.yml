@@ -14,8 +14,8 @@ gcc:latest:
   alpine:
     3.17: build-base musl-dev linux-headers openssl-dev cmake
 rust:nightly:
-  inputs:
-    - gcc:latest
+  dockers:
+    - library/alpine@3.17
   alpine:
     3.17: rustup
   rust: nightly
