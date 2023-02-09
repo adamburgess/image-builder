@@ -12,6 +12,7 @@ interface ImagesYmlRaw {
         dockers?: string[]
         repos?: string[]
         npm?: string
+        rust?: string
     }
 }
 interface Image {
@@ -21,6 +22,7 @@ interface Image {
     dockers: string[]
     repos: string[]
     npm: string[]
+    rust: string | undefined
 }
 
 const netlifyUrl = `https://adamburgess-image-builder.netlify.app/.netlify/functions`;
@@ -65,16 +67,27 @@ function npmToTarget(pkg: string) {
 `
 }
 
+function rustToTarget(channel: string) {
+    const s = sanitise(channel);
+    return `rust-${channel}: FORCE
+\t@echo [Rust] ${channel}
+\t@curl -s -G --data-urlencode "channel=${channel}" ${netlifyUrl}/rust > rust-${s}.tmp
+\t$(call replace_if_different,rust-${s})
+
+`
+}
+
 function sanitise(name: string) {
     return name.replace(/:/g, '.').replace(/\//g, '_');
 }
 
 function imageToTarget(i: Image) {
-    const {image, repos, dockers, alpine, npm, inputs} = i;
+    const { image, repos, dockers, alpine, npm, rust, inputs } = i;
     const repoTargets = repos.map(r => 'repo-' + sanitise(r)).join(' ');
     const dockerTargets = dockers.map(d => 'docker-' + sanitise(d)).join(' ');
     const alpineTargets = alpine.flatMap(([version, pkgs]) => pkgs.map(p => `alpine-package-${version}-${sanitise(p)}`)).join(' ');
     const npmTargets = npm.map(n => 'npm-' + sanitise(n)).join(' ');
+    const rustTarget = rust ? 'rust-' + rust : '';
     const inputTargets = inputs.map(i => 'image-' + sanitise(i)).join(' ');
 
     const imageFile = sanitise(image);
@@ -85,7 +98,7 @@ function imageToTarget(i: Image) {
 
 `;
 
-    const targets = [repoTargets, dockerTargets, alpineTargets, npmTargets, inputTargets, `dockerfile-${imageFile}`];
+    const targets = [repoTargets, dockerTargets, alpineTargets, npmTargets, rustTarget, inputTargets, `dockerfile-${imageFile}`];
     const imageFileTarget = `image-${imageFile}: ${targets.filter(t => t.length !== 0).join(' ')}
 \t@echo [Image] ${image}
 \tcd ../dockerfiles && docker buildx build --platform linux/amd64,linux/arm64 --push -t aburgess/${image} -f ${imageFile}.Dockerfile .
@@ -151,7 +164,8 @@ endef
         repos: opt.repos ?? [],
         alpine: Object.entries(opt.alpine ?? {}).map(([version, pkgs]) => [version, pkgs.split(' ')]),
         inputs: opt.inputs ?? [],
-        npm: opt.npm?.split(' ') ?? []
+        npm: opt.npm?.split(' ') ?? [],
+        rust: opt.rust
     }) as Image);
 
     const dockers = from(images).map(image => image.dockers).flat().distinct().toArray();
@@ -159,12 +173,14 @@ endef
     // take the list of alpines then group each by their version and combine all groups.
     const alpine = from(images).map(image => image.alpine).flat().groupBy(x => x[0], x => x[1]).toObject(x => x.key, x => x.flat().distinct().toArray());
     const npms = from(images).map(image => image.npm).flat().distinct().toArray();
+    const rusts = from(images).where(image => image.rust).map(image => image.rust!).distinct().toArray();
 
     // create the targets
     dockers.forEach(d => makefile += dockerToTarget(d));
     repos.forEach(d => makefile += repoToTarget(d));
     Object.entries(alpine).forEach(([version, pkgs]) => pkgs.forEach(d => makefile += alpineToTarget(d, version)));
     npms.forEach(d => makefile += npmToTarget(d));
+    rusts.forEach(d => makefile += rustToTarget(d));
 
     images.forEach(i => makefile += imageToTarget(i));
 
