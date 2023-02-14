@@ -2,7 +2,7 @@
 # changed:
 # rust version nightly
 # added musl-dev
-# populated the cargo index
+# set cargo index to sparse
 FROM alpine:3.17
 
 RUN apk add --no-cache \
@@ -12,6 +12,7 @@ RUN apk add --no-cache \
 
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
+    CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse \
     PATH=/usr/local/cargo/bin:$PATH
 
 RUN set -eux; \
@@ -31,5 +32,3 @@ RUN set -eux; \
     rustup --version; \
     cargo --version; \
     rustc --version;
-
-RUN cargo search --limit 0
