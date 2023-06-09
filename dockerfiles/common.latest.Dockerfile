@@ -1,4 +1,4 @@
-from alpine:3.17
+from alpine:3.18
 
 run apk add --no-cache bash curl wget tini htop nano libstdc++ && echo "export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" > /root/.bashrc
 
