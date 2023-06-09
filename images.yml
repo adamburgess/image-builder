@@ -1,50 +1,50 @@
 common:latest:
   dockers:
-    - library/alpine@3.17
+    - library/alpine@3.18
   alpine:
-    3.17: bash curl wget htop nano libstdc++
+    3.18: bash curl wget htop nano libstdc++
 common:extra:
   inputs:
     - common:latest
   alpine:
-    3.17: dpkg sudo git rsync openssh-client
+    3.18: dpkg sudo git rsync openssh-client
 gcc:latest:
   inputs:
     - common:extra
   alpine:
-    3.17: build-base musl-dev linux-headers openssl-dev cmake
+    3.18: build-base musl-dev linux-headers openssl-dev cmake
 rust:nightly:
   dockers:
-    - library/alpine@3.17
+    - library/alpine@3.18
   alpine:
-    3.17: rustup
+    3.18: rustup
   rust: nightly
 gcc:extra:
   inputs:
     - gcc:latest
   alpine:
-    3.17: gdb sqlite-dev
-node:19:
+    3.18: gdb sqlite-dev
+node:20:
   inputs:
     - common:latest
   alpine:
-    3.17: nodejs-current
-node:19-npm:
+    3.18: nodejs-current
+node:20-npm:
   inputs:
-    - node:19
+    - node:20
   alpine:
-    3.17: npm git jq
+    3.18: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
 node:18:
   inputs:
     - common:latest
   alpine:
-    3.17: nodejs
+    3.18: nodejs
 node:18-npm:
   inputs:
     - node:18
   alpine:
-    3.17: npm git jq
+    3.18: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
 bun:latest:
   dockers:
@@ -60,13 +60,13 @@ syncplay:latest:
    - common:latest
    - common:extra
  alpine:
-   3.17: python3 build-base py3-pip python3-dev libffi-dev libffi
+   3.18: python3 build-base py3-pip python3-dev libffi-dev libffi
  repos:
    - github@Syncplay/syncplay@1.7.0-Beta1
 jpegxl:latest:
  dockers:
-   - library/alpine@3.17
+   - library/alpine@3.18
  alpine:
-   3.17: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev gflags-dev linux-headers
+   3.18: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev gflags-dev linux-headers
  repos:
    - github@libjxl/libjxl@main
