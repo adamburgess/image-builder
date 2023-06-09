@@ -24,17 +24,17 @@ gcc:extra:
     - gcc:latest
   alpine:
     3.18: gdb sqlite-dev
-node:20:
-  inputs:
-    - common:latest
-  alpine:
-    3.18: nodejs-current
-node:20-npm:
-  inputs:
-    - node:20
-  alpine:
-    3.18: npm git jq
-  npm: npm yarn pnpm @adamburgess/nr
+# node:20:
+#   inputs:
+#     - common:latest
+#   alpine:
+#     3.18: nodejs-current
+# node:20-npm:
+#   inputs:
+#     - node:20
+#   alpine:
+#     3.18: npm git jq
+#   npm: npm yarn pnpm @adamburgess/nr
 node:18:
   inputs:
     - common:latest
