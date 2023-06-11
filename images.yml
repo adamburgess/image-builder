@@ -55,6 +55,10 @@ caddy:2:
   dockers:
     - library/caddy@2-builder
     - library/caddy@2
+caddy:2.7:
+  dockers:
+    - library/caddy@2.7-builder
+    - library/caddy@2.7
 syncplay:latest:
  inputs:
    - common:latest
