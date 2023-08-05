@@ -13,6 +13,7 @@ interface ImagesYmlRaw {
         repos?: string[]
         npm?: string
         rust?: string
+        githubRelease?: string
     }
 }
 interface Image {
@@ -23,6 +24,7 @@ interface Image {
     repos: string[]
     npm: string[]
     rust: string | undefined
+    githubRelease: string | undefined
 }
 
 const netlifyUrl = `https://adamburgess-image-builder.netlify.app/.netlify/functions`;
@@ -57,6 +59,16 @@ function repoToTarget(repo: string) {
 `
 }
 
+function githubReleaseToTarget(repo: string) {
+    const s = sanitise(repo);
+    return `github-release-${s}: FORCE
+\t@echo [GitHub Latest Release] ${repo}
+\t@curl -s -G --data-urlencode "repo=${repo}" ${netlifyUrl}/github-release > repo-${s}.tmp
+\t$(call replace_if_different,repo-${s})
+
+`
+}
+
 function npmToTarget(pkg: string) {
     const s = sanitise(pkg);
     return `npm-${s}: FORCE
@@ -82,13 +94,14 @@ function sanitise(name: string) {
 }
 
 function imageToTarget(i: Image) {
-    const { image, repos, dockers, alpine, npm, rust, inputs } = i;
+    const { image, repos, dockers, alpine, npm, rust, inputs, githubRelease } = i;
     const repoTargets = repos.map(r => 'repo-' + sanitise(r)).join(' ');
     const dockerTargets = dockers.map(d => 'docker-' + sanitise(d)).join(' ');
     const alpineTargets = alpine.flatMap(([version, pkgs]) => pkgs.map(p => `alpine-package-${version}-${sanitise(p)}`)).join(' ');
     const npmTargets = npm.map(n => 'npm-' + sanitise(n)).join(' ');
     const rustTarget = rust ? 'rust-' + rust : '';
     const inputTargets = inputs.map(i => 'image-' + sanitise(i)).join(' ');
+    const githubReleaseTarget = githubRelease ? 'github-release-' + sanitise(githubRelease) : '';
 
     const imageFile = sanitise(image);
 
@@ -98,7 +111,7 @@ function imageToTarget(i: Image) {
 
 `;
 
-    const targets = [repoTargets, dockerTargets, alpineTargets, npmTargets, rustTarget, inputTargets, `dockerfile-${imageFile}`];
+    const targets = [repoTargets, dockerTargets, alpineTargets, npmTargets, rustTarget, inputTargets, githubReleaseTarget, `dockerfile-${imageFile}`];
     const imageFileTarget = `image-${imageFile}: ${targets.filter(t => t.length !== 0).join(' ')}
 \t@echo [Image] ${image}
 \tcd ../dockerfiles && docker buildx build --platform linux/amd64,linux/arm64 --push -t aburgess/${image} -f ${imageFile}.Dockerfile .
@@ -165,7 +178,8 @@ endef
         alpine: Object.entries(opt.alpine ?? {}).map(([version, pkgs]) => [version, pkgs.split(' ')]),
         inputs: opt.inputs ?? [],
         npm: opt.npm?.split(' ') ?? [],
-        rust: opt.rust
+        rust: opt.rust,
+        githubRelease: opt.githubRelease
     }) as Image);
 
     const dockers = from(images).map(image => image.dockers).flat().distinct().toArray();
@@ -174,6 +188,7 @@ endef
     const alpine = from(images).map(image => image.alpine).flat().groupBy(x => x[0], x => x[1]).toObject(x => x.key, x => x.flat().distinct().toArray());
     const npms = from(images).map(image => image.npm).flat().distinct().toArray();
     const rusts = from(images).where(image => image.rust).map(image => image.rust!).distinct().toArray();
+    const githubReleases = from(images).where(image => image.githubRelease).map(image => image.githubRelease!).distinct().toArray();
 
     // create the targets
     dockers.forEach(d => makefile += dockerToTarget(d));
@@ -181,6 +196,7 @@ endef
     Object.entries(alpine).forEach(([version, pkgs]) => pkgs.forEach(d => makefile += alpineToTarget(d, version)));
     npms.forEach(d => makefile += npmToTarget(d));
     rusts.forEach(d => makefile += rustToTarget(d));
+    githubReleases.forEach(d => makefile += githubReleaseToTarget(d));
 
     images.forEach(i => makefile += imageToTarget(i));
 
