@@ -5,6 +5,7 @@ on:
       - 'netlify/**'
   schedule:
     - cron: '30 21 * * 0' # 9:30pm UTC Sunday, 7:30am AEST Monday.
+  workflow_dispatch:
 concurrency: 
   group: builder
 jobs:
