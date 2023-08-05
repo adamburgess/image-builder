@@ -51,6 +51,7 @@ bun:latest:
     - ubuntu:22.04
   inputs:
     - common:latest
+  githubRelease: oven-sh/bun
 caddy:2:
   dockers:
     - library/caddy@2-builder
