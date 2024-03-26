@@ -70,8 +70,8 @@ syncplay:latest:
    - github@Syncplay/syncplay@1.7.0-Beta1
 jpegxl:latest:
  dockers:
-   - library/alpine@3.18
+   - library/alpine@3.19
  alpine:
-   3.18: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev gflags-dev linux-headers
+   3.19: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev gflags-dev linux-headers
  repos:
    - github@libjxl/libjxl@main
