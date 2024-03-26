@@ -48,7 +48,7 @@ node:18-npm:
   npm: npm yarn pnpm @adamburgess/nr
 bun:latest:
   dockers:
-    - library/ubuntu:22.04
+    - library/ubuntu@22.04
   inputs:
     - common:latest
   githubRelease: oven-sh/bun
