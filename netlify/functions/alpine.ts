@@ -29,7 +29,8 @@ export async function handler(event: HandlerEvent) {
     return {
         statusCode: 200,
         headers: {
-            'Content-Type': 'text/plain'
+            'Content-Type': 'text/plain',
+            'Cache-Control': 'no-store'
         },
         body: dependencies.join(' ')
     };
