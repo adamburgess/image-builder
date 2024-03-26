@@ -2,7 +2,7 @@ Common base images I use.
 
 ### [aburgess/common:latest](https://hub.docker.com/r/aburgess/latest)
 
-Alpine 3.17, but with:
+Alpine 3.19, but with:
 * bash (as entrypoint)
 * curl
 * htop
@@ -44,19 +44,19 @@ Adds:
 
 I will add stuff to this image when I don't want to recompile dependencies.
 
-### [aburgess/node:18 and aburgess/node:19](https://hub.docker.com/r/aburgess/node)
+### [aburgess/node:20](https://hub.docker.com/r/aburgess/node)
 
 Base image: aburgess/common:latest  
-Versions 18 and 19 of node.
+Versions 20 of node.
 
-### [aburgess/node:18-npm and aburgess/node:19-npm](https://hub.docker.com/r/aburgess/node)
+### [aburgess/node:20-npm](https://hub.docker.com/r/aburgess/node)
 
-Base image: aburgess/18:latest or aburgess/node:19  
+Base image: aburgess/node:20  
 Includes the latest version of npm, yarn, pnpm, and jq.  
 Also includes [@adamburges/nr](https://www.npmjs.com/package/@adamburgess/nr).  
 Generally you build on this image, then have a final stage on the other image.
 
 ### [aburgess/jpegxl](https://hub.docker.com/r/aburgess/jpegxl)
 
-Base image: alpine  
+Base image: Alpine 3.19  
 Builds the latest version of the [JPEG XL encoder/decoder](https://github.com/libjxl/libjxl) and provides them as /cjxl and /djxl.  
