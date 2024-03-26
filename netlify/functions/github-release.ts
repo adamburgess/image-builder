@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import { fetch } from 'undici'
 import { HandlerEvent } from '@netlify/functions'
 
 async function getLatestRelease(repo: string) {
