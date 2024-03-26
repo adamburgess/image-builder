@@ -1,51 +1,51 @@
 common:latest:
   dockers:
-    - library/alpine@3.18
+    - library/alpine@3.19
   alpine:
-    3.18: bash curl wget htop nano libstdc++
+    3.19: bash curl wget htop nano libstdc++
 common:extra:
   inputs:
     - common:latest
   alpine:
-    3.18: dpkg sudo git rsync openssh-client
+    3.19: dpkg sudo git rsync openssh-client
 gcc:latest:
   inputs:
     - common:extra
   alpine:
-    3.18: build-base musl-dev linux-headers openssl-dev cmake
+    3.19: build-base musl-dev linux-headers openssl-dev cmake
 rust:nightly:
   dockers:
-    - library/alpine@3.18
+    - library/alpine@3.19
   alpine:
-    3.18: rustup
+    3.19: rustup
   rust: nightly
 gcc:extra:
   inputs:
     - gcc:latest
   alpine:
-    3.18: gdb sqlite-dev
+    3.19: gdb sqlite-dev
 node:20:
   inputs:
     - common:latest
   alpine:
-    3.18: nodejs-current
+    3.19: nodejs
 node:20-npm:
   inputs:
     - node:20
   alpine:
-    3.18: npm git jq
+    3.19: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
-node:18:
-  inputs:
-    - common:latest
-  alpine:
-    3.18: nodejs
-node:18-npm:
-  inputs:
-    - node:18
-  alpine:
-    3.18: npm git jq
-  npm: npm yarn pnpm @adamburgess/nr
+#node:18:
+#  inputs:
+#    - common:latest
+#  alpine:
+#    3.18: nodejs
+#node:18-npm:
+#  inputs:
+#    - node:18
+#  alpine:
+#    3.18: npm git jq
+#  npm: npm yarn pnpm @adamburgess/nr
 bun:latest:
   dockers:
     - library/ubuntu@22.04
@@ -65,7 +65,7 @@ syncplay:latest:
    - common:latest
    - common:extra
  alpine:
-   3.18: python3 build-base py3-pip python3-dev libffi-dev libffi
+   3.19: python3 build-base py3-pip python3-dev libffi-dev libffi
  repos:
    - github@Syncplay/syncplay@1.7.0-Beta1
 jpegxl:latest:
