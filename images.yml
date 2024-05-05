@@ -35,17 +35,18 @@ node:20-npm:
   alpine:
     3.19: npm git jq
   npm: npm yarn pnpm @adamburgess/nr
-#node:18:
-#  inputs:
-#    - common:latest
-#  alpine:
-#    3.18: nodejs
-#node:18-npm:
-#  inputs:
-#    - node:18
-#  alpine:
-#    3.18: npm git jq
-#  npm: npm yarn pnpm @adamburgess/nr
+node:22:
+  inputs:
+    - common:latest
+    - library/node:22-alpine3.19
+  alpine:
+    3.19: nodejs
+node:22-npm:
+  inputs:
+    - node:22
+  alpine:
+    3.19: npm git jq
+  npm: npm pnpm @adamburgess/nr
 bun:latest:
   dockers:
     - library/ubuntu@22.04
@@ -56,10 +57,6 @@ caddy:2:
   dockers:
     - library/caddy@2-builder
     - library/caddy@2
-#caddy:2.7:
-#  dockers:
-#    - library/caddy@2.7-builder
-#    - library/caddy@2.7
 syncplay:latest:
  inputs:
    - common:latest
