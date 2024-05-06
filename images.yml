@@ -39,7 +39,7 @@ node:22:
   inputs:
     - common:latest
   dockers:
-    - library/node:22-alpine3.19
+    - library/node@22-alpine3.19
   alpine:
     3.19: nodejs
 node:22-npm:

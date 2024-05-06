@@ -10,7 +10,7 @@ interface DockerTagResponse {
 }
 
 async function getDockerSha(input: string, architecture = 'amd64') {
-    let [repo, tag] = input.split('@');
+    let [repo, tag] = input.split(':');
     if (tag === undefined) tag = 'latest';
 
     const response = await fetch(`https://hub.docker.com/v2/repositories/${repo}/tags/${tag}`);
