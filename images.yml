@@ -1,6 +1,6 @@
 common:latest:
   dockers:
-    - library/alpine@3.19
+    - library/alpine:3.19
   alpine:
     3.19: bash curl wget htop nano libstdc++
 common:extra:
@@ -15,7 +15,7 @@ gcc:latest:
     3.19: build-base musl-dev linux-headers openssl-dev cmake
 rust:nightly:
   dockers:
-    - library/alpine@3.19
+    - library/alpine:3.19
   alpine:
     3.19: rustup
   rust: nightly
@@ -39,7 +39,7 @@ node:22:
   inputs:
     - common:latest
   dockers:
-    - library/node@22-alpine3.19
+    - library/node:22-alpine3.19
   alpine:
     3.19: nodejs
 node:22-npm:
@@ -50,14 +50,14 @@ node:22-npm:
   npm: npm pnpm @adamburgess/nr
 bun:latest:
   dockers:
-    - library/ubuntu@22.04
+    - library/ubuntu:24.04
   inputs:
     - common:latest
   githubRelease: oven-sh/bun
 caddy:2:
   dockers:
-    - library/caddy@2-builder
-    - library/caddy@2
+    - library/caddy:2-builder
+    - library/caddy:2
 syncplay:latest:
  inputs:
    - common:latest
@@ -68,7 +68,7 @@ syncplay:latest:
    - github@Syncplay/syncplay@1.7.0-Beta1
 jpegxl:latest:
  dockers:
-   - library/alpine@3.19
+   - library/alpine:3.19
  alpine:
    3.19: git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev gflags-dev linux-headers
  repos:
