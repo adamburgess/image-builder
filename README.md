@@ -23,6 +23,21 @@ Packages:
 * rsync
 * ssh
 
+### [aburgess/caddy:2](https://hub.docker.com/r/aburgess/caddy)
+
+Latest version of [caddy](https://caddyserver.com/), with:
+ * Cloudflare DNS
+ * CGI
+
+Exposed as a single file at /caddy.
+
+To export the binary for use in other systems:
+```sh
+container=$(docker container create aburgess/caddy:2 --pull always)
+docker cp $container:/caddy ./caddy
+docker container rm $container
+```
+
 ### [aburgess/gcc:latest](https://hub.docker.com/r/aburgess/gcc)
 
 Base image: aburgess/common:extra
@@ -44,14 +59,14 @@ Adds:
 
 I will add stuff to this image when I don't want to recompile dependencies.
 
-### [aburgess/node:20](https://hub.docker.com/r/aburgess/node)
+### [aburgess/node:22](https://hub.docker.com/r/aburgess/node)
 
 Base image: aburgess/common:latest  
-Versions 20 of node.
+Versions 22 of node.
 
-### [aburgess/node:20-npm](https://hub.docker.com/r/aburgess/node)
+### [aburgess/node:22-npm](https://hub.docker.com/r/aburgess/node)
 
-Base image: aburgess/node:20  
+Base image: aburgess/node:22  
 Includes the latest version of npm, yarn, pnpm, and jq.  
 Also includes [@adamburges/nr](https://www.npmjs.com/package/@adamburgess/nr).  
 Generally you build on this image, then have a final stage on the other image.
