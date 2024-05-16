@@ -1,6 +1,7 @@
 import { fetch } from 'undici'
 import { HandlerEvent } from '@netlify/functions'
 import Toml from '@iarna/toml'
+import retry from 'async-retry'
 
 async function getRustVersion(channel: string) {
     const url = `https://static.rust-lang.org/dist/channel-rust-${channel}.toml`;
@@ -12,7 +13,7 @@ async function getRustVersion(channel: string) {
 
 export async function handler(event: HandlerEvent) {
     const channel = event.queryStringParameters!.channel!;
-    const latestVersion = await getRustVersion(channel);
+    const latestVersion = await retry(() => getRustVersion(channel), { minTimeout: 200, maxTimeout: 1000 });
     return {
         statusCode: 200,
         headers: {

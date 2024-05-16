@@ -1,5 +1,6 @@
 import { fetch } from 'undici'
 import { HandlerEvent } from '@netlify/functions'
+import retry from 'async-retry'
 
 interface DockerTagResponse {
     images: {
@@ -27,7 +28,7 @@ async function getDockerSha(input: string, architecture = 'amd64') {
 export async function handler(event: HandlerEvent) {
     const docker = event.queryStringParameters!.docker!;
     const arch = event.queryStringParameters!.arch!;
-    const sha = await getDockerSha(docker, arch);
+    const sha = await retry(() => getDockerSha(docker, arch), { minTimeout: 200, maxTimeout: 1000 });
     return {
         statusCode: 200,
         headers: {

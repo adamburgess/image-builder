@@ -1,5 +1,6 @@
 import { fetch } from 'undici'
 import { HandlerEvent } from '@netlify/functions'
+import retry from 'async-retry'
 
 async function getRepoSha(input: string) {
     let [hoster, repo, tag] = input.split('@');
@@ -29,7 +30,7 @@ async function getRepoSha(input: string) {
 
 export async function handler(event: HandlerEvent) {
     const repo = event.queryStringParameters!.repo!;
-    const sha = await getRepoSha(repo);
+    const sha = await retry(() => getRepoSha(repo), { minTimeout: 200, maxTimeout: 1000 });
     return {
         statusCode: 200,
         headers: {

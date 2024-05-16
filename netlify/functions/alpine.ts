@@ -1,6 +1,7 @@
 import AlpineApk from 'alpine-apk'
 import { Mutex } from 'async-mutex'
 import { HandlerEvent } from '@netlify/functions'
+import retry from 'async-retry'
 
 const mutex = new Mutex();
 const alpines: Record<string, AlpineApk> = {};
@@ -25,7 +26,7 @@ async function getDependenciesForPackages(pkg: string, version: string) {
 export async function handler(event: HandlerEvent) {
     const pkg = event.queryStringParameters!.package!;
     const version = event.queryStringParameters!.version ?? 'latest-stable';
-    const dependencies = await getDependenciesForPackages(pkg, version);
+    const dependencies = await retry(() => getDependenciesForPackages(pkg, version), { minTimeout: 200, maxTimeout: 1000 });
     return {
         statusCode: 200,
         headers: {

@@ -1,5 +1,6 @@
 import { fetch } from 'undici'
 import { HandlerEvent } from '@netlify/functions'
+import retry from 'async-retry'
 
 async function getLatestRelease(repo: string) {
     let sha: string;
@@ -23,7 +24,7 @@ async function getLatestRelease(repo: string) {
 
 export async function handler(event: HandlerEvent) {
     const repo = event.queryStringParameters!.repo!;
-    const release = await getLatestRelease(repo);
+    const release = await retry(() => getLatestRelease(repo), { minTimeout: 200, maxTimeout: 1000 });
     return {
         statusCode: 200,
         headers: {
