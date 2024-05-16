@@ -10,4 +10,4 @@ RUN xcaddy build \
 FROM scratch
 
 COPY --from=builder /usr/bin/caddy /caddy
-ENTRYPOINT /caddy
+ENTRYPOINT ["/caddy"]
