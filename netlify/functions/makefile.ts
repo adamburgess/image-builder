@@ -63,8 +63,8 @@ function githubReleaseToTarget(repo: string) {
     const s = sanitise(repo);
     return `github-release-${s}: FORCE
 \t@echo [GitHub Latest Release] ${repo}
-\t@curl -s -G --data-urlencode "repo=${repo}" ${netlifyUrl}/github-release > repo-${s}.tmp
-\t$(call replace_if_different,repo-${s})
+\t@curl -s -G --data-urlencode "repo=${repo}" ${netlifyUrl}/github-release > github-release-${s}.tmp
+\t$(call replace_if_different,github-release-${s})
 
 `
 }
