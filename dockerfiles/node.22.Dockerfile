@@ -1,8 +1,8 @@
 from scratch as node22
 
-copy --from=node:22-alpine3.19 /usr/local/bin/node /usr/bin/node
-copy --from=node:22-alpine3.19 /usr/local/include/node /usr/include/node
-copy --from=node:22-alpine3.19 /usr/local/lib/node_modules /usr/lib/node_modules
+copy --from=node:22-alpine3.20 /usr/local/bin/node /usr/bin/node
+copy --from=node:22-alpine3.20 /usr/local/include/node /usr/include/node
+copy --from=node:22-alpine3.20 /usr/local/lib/node_modules /usr/lib/node_modules
 
 from aburgess/common
 

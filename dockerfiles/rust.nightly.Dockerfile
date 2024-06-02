@@ -1,9 +1,9 @@
-# copied from https://github.com/rust-lang/docker-rust/blob/master/1.67.0/alpine3.17/Dockerfile
+# copied from https://github.com/rust-lang/docker-rust/blob/master/1.78.0/alpine3.20/Dockerfile
 # changed:
 # rust version nightly
 # added musl-dev
 # set cargo index to sparse
-FROM alpine:3.19
+FROM alpine:3.20
 
 RUN apk add --no-cache \
         ca-certificates \
@@ -18,11 +18,11 @@ ENV RUSTUP_HOME=/usr/local/rustup \
 RUN set -eux; \
     apkArch="$(apk --print-arch)"; \
     case "$apkArch" in \
-        x86_64) rustArch='x86_64-unknown-linux-musl'; rustupSha256='241a99ff02accd2e8e0ef3a46aaa59f8d6934b1bb6e4fba158e1806ae028eb25' ;; \
-        aarch64) rustArch='aarch64-unknown-linux-musl'; rustupSha256='6a2691ced61ef616ca196bab4b6ba7b0fc5a092923955106a0c8e0afa31dbce4' ;; \
+        x86_64) rustArch='x86_64-unknown-linux-musl'; rustupSha256='b9d84cbba1ed29d11c534406a1839d64274d29805041e0e096d5293ae6390dd0' ;; \
+        aarch64) rustArch='aarch64-unknown-linux-musl'; rustupSha256='841513f7599fcf89c71a62dea332337dfd4332216b60c17648d6effbeefe66a9' ;; \
         *) echo >&2 "unsupported architecture: $apkArch"; exit 1 ;; \
     esac; \
-    url="https://static.rust-lang.org/rustup/archive/1.25.2/${rustArch}/rustup-init"; \
+    url="https://static.rust-lang.org/rustup/archive/1.27.0/${rustArch}/rustup-init"; \
     wget "$url"; \
     echo "${rustupSha256} *rustup-init" | sha256sum -c -; \
     chmod +x rustup-init; \

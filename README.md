@@ -2,7 +2,7 @@ Common base images I use.
 
 ### [aburgess/common:latest](https://hub.docker.com/r/aburgess/latest)
 
-Alpine 3.19, but with:
+Alpine 3.20, but with:
 * bash (as entrypoint)
 * curl
 * htop
@@ -73,5 +73,5 @@ Generally you build on this image, then have a final stage on the other image.
 
 ### [aburgess/jpegxl](https://hub.docker.com/r/aburgess/jpegxl)
 
-Base image: Alpine 3.19  
+Base image: Alpine 3.20  
 Builds the latest version of the [JPEG XL encoder/decoder](https://github.com/libjxl/libjxl) and provides them as /cjxl and /djxl.  

@@ -1,7 +1,7 @@
 from aburgess/common:extra as build
 
 run apk add --no-cache python3 build-base py3-pip python3-dev libffi-dev
-run git clone --depth 1 --branch 1.7.0-Beta1 https://github.com/Syncplay/syncplay.git
+run git clone --depth 1 --branch v1.7.3 https://github.com/Syncplay/syncplay.git
 WORKDIR /syncplay
 run python3 -m venv environment
 run source environment/bin/activate && pip3 install -U wheel
