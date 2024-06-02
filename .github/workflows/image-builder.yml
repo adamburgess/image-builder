@@ -13,17 +13,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-        with:
-          platforms: arm64
+      # - name: Set up QEMU
+      #   uses: docker/setup-qemu-action@v3
+      #   with:
+      #     platforms: arm64
+      - name: setup ssh
+        run: |
+          mkdir ~/.ssh
+          echo "adam.id.au ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDJxQFqI7BTEJ2kulSpqRjQGSvvJG1r2+3mMO6NJK3Y0" >> ~/.ssh/known_hosts
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 700 ~/.ssh
+          chmod 600 ~/.ssh/id_ed25519
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v3
         with:
-          buildkitd-config-inline: |
-            [worker.oci]
-              max-parallelism = 1
+          # buildkitd-config-inline: |
+          #   [worker.oci]
+          #     max-parallelism = 1
+          append: |
+            - endpoint: ssh://adam@adam.id.au
+              platforms: linux/arm64
       - name: Inspect builder
         run: |
           echo "Name:      ${{ steps.buildx.outputs.name }}"
