@@ -67,8 +67,8 @@ Versions 22 of node.
 ### [aburgess/node:22-npm](https://hub.docker.com/r/aburgess/node)
 
 Base image: aburgess/node:22  
-Includes the latest version of npm, yarn, pnpm, and jq.  
-Also includes [@adamburges/nr](https://www.npmjs.com/package/@adamburgess/nr).  
+Includes the latest version of npm, yarn, pnpm.  
+Also includes [nrr](https://github.com/ryanccn/nrr).  
 Generally you build on this image, then have a final stage on the other image.
 
 ### [aburgess/jpegxl](https://hub.docker.com/r/aburgess/jpegxl)

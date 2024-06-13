@@ -33,8 +33,8 @@ node:20-npm:
   inputs:
     - node:20
   alpine:
-    '3.20': npm git jq
-  npm: npm yarn pnpm @adamburgess/nr
+    '3.20': npm git
+  npm: npm yarn pnpm
 node:22:
   inputs:
     - common:latest
@@ -46,8 +46,8 @@ node:22-npm:
   inputs:
     - node:22
   alpine:
-    '3.20': npm git jq
-  npm: npm pnpm @adamburgess/nr
+    '3.20': npm git
+  npm: npm pnpm
 bun:latest:
   dockers:
     - library/ubuntu:24.04
