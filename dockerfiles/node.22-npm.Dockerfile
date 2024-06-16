@@ -11,4 +11,4 @@ run [ $TARGETARCH == "arm64" ] && TARGETARCH="aarch64" || TARGETARCH="x86_64"; w
 
 from aburgess/node:22
 
-run --mount=from=nrr,source=/nrr,target=/nrr apk add --no-cache git && npm install -g npm && npm install -g pnpm && pnpm config set script-shell /bin/bash && cp /nrr /usr/bin/nrr && alias nr=nrr
+run --mount=from=nrr,source=/nrr,target=/nrr apk add --no-cache git && npm install -g npm && npm install -g pnpm && pnpm config set script-shell /bin/bash && cp /nrr /usr/bin/nrr && ln -s nrr /usr/bin/nr
