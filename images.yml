@@ -1,18 +1,18 @@
 common:latest:
   dockers:
-    - library/alpine:3.20
+    - library/alpine:3.21
   alpine:
-    '3.20': bash curl wget htop nano libstdc++
+    '3.21': bash curl wget htop nano libstdc++
 common:extra:
   inputs:
     - common:latest
   alpine:
-    '3.20': dpkg sudo git rsync openssh-client
+    '3.21': dpkg sudo git rsync openssh-client
 gcc:latest:
   inputs:
     - common:extra
   alpine:
-    '3.20': build-base musl-dev linux-headers openssl-dev cmake
+    '3.21': build-base musl-dev linux-headers openssl-dev cmake
 rust:nightly:
   dockers:
     - library/alpine:3.20
@@ -23,30 +23,30 @@ gcc:extra:
   inputs:
     - gcc:latest
   alpine:
-    '3.20': gdb sqlite-dev
-node:20:
-  inputs:
-    - common:latest
-  alpine:
-    '3.20': nodejs
-node:20-npm:
-  inputs:
-    - node:20
-  alpine:
-    '3.20': npm git
-  npm: npm yarn pnpm
+    '3.21': gdb sqlite-dev
 node:22:
   inputs:
     - common:latest
-  dockers:
-    - library/node:22-alpine3.20
   alpine:
-    '3.20': nodejs
+    '3.21': nodejs
 node:22-npm:
   inputs:
     - node:22
   alpine:
-    '3.20': npm git
+    '3.21': git
+  npm: npm pnpm
+node:23:
+  inputs:
+    - common:latest
+  # dockers:
+  #   - library/node:22-alpine3.20
+  alpine:
+    '3.21': nodejs-current
+node:23-npm:
+  inputs:
+    - node:23
+  alpine:
+    '3.21': git
   npm: npm pnpm
 bun:latest:
   dockers:
@@ -63,7 +63,7 @@ syncplay:latest:
    - common:latest
    - common:extra
  alpine:
-   '3.20': python3 build-base py3-pip python3-dev libffi-dev libffi
+   '3.21': python3 build-base py3-pip python3-dev libffi-dev libffi
  repos:
    - github@Syncplay/syncplay@v1.7.3
 jpegxl:latest:
