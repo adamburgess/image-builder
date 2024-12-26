@@ -33,7 +33,7 @@ node:22-npm:
   inputs:
     - node:22
   alpine:
-    '3.21': git
+    '3.21': git npm
   npm: npm pnpm
 node:23:
   inputs:
@@ -46,7 +46,7 @@ node:23-npm:
   inputs:
     - node:23
   alpine:
-    '3.21': git
+    '3.21': git npm
   npm: npm pnpm
 bun:latest:
   dockers:
