@@ -15,9 +15,9 @@ gcc:latest:
     '3.21': build-base musl-dev linux-headers openssl-dev cmake
 rust:nightly:
   dockers:
-    - library/alpine:3.20
+    - library/alpine:3.21
   alpine:
-    '3.20': ca-certificates gcc musl-dev
+    '3.21': ca-certificates gcc musl-dev
   rust: nightly
 gcc:extra:
   inputs:
@@ -68,8 +68,8 @@ syncplay:latest:
    - github@Syncplay/syncplay@v1.7.3
 jpegxl:latest:
  dockers:
-   - library/alpine:3.20
+   - library/alpine:3.21
  alpine:
-   '3.20': git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev gflags-dev linux-headers
+   '3.21': git cmake build-base libjpeg-turbo-static libjpeg-turbo-dev libpng-static libpng-dev zlib-static zlib-dev gflags-dev linux-headers
  repos:
    - github@libjxl/libjxl@main
