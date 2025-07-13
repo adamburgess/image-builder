@@ -3,7 +3,7 @@
 # rust version nightly
 # added musl-dev
 # set cargo index to sparse
-FROM alpine:3.21
+FROM alpine:3.22
 
 RUN apk add --no-cache \
         ca-certificates \

@@ -9,6 +9,6 @@ arg NRR_SUFFIX=-unknown-linux-musl.zip
 
 run [ $TARGETARCH == "arm64" ] && TARGETARCH="aarch64" || TARGETARCH="x86_64"; wget -q --no-hsts $NRR_PREFIX$TARGETARCH$NRR_SUFFIX; unzip -j nrr*.zip; rm nrr*.zip; chmod +x /nrr
 
-from aburgess/node:23
+from aburgess/node:24
 
 run --mount=from=nrr,source=/nrr,target=/nrr apk add --no-cache npm git && npm install -g npm && npm install -g pnpm && pnpm config set script-shell /bin/bash && cp /nrr /usr/bin/nrr && ln -s nrr /usr/bin/nr
